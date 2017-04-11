@@ -1,0 +1,80 @@
+[
+	{
+    "icon":"5","menuName":"淘实惠PC框架",
+    "childNode":[
+      { "menuPath":"ued/about/index.html","menuName":"关于","openType":""},
+      { "menuPath":"ued/about/guide.html","menuName":"使用指南","openType":""},
+      { "menuPath":"ued/about/update.html","menuName":"更新日志","openType":""},
+      { "menuPath":"ued/about/FQ.html","menuName":"常见问题","openType":""}
+
+    ]
+  },
+  {
+    "icon":"1","menuName":"基础",
+    "childNode":[
+      { "menuPath":"ued/base/icons.html","menuName":"图标","openType":""},
+      { "menuPath":"ued/base/btn.html","menuName":"按钮","openType":""},
+      { "menuPath":"ued/base/account-icons.html","menuName":"账户中心图标","openType":""}
+    ]
+  },
+  {
+    "icon":"2","menuName":"组件",
+    "childNode":[
+      { "menuPath":"ued/table/index.html","menuName":"表格","openType":""},
+      { "menuPath":"ued/form/index.html","menuName":"表单","openType":""},      
+      { "menuPath":"ued/window/index.html","menuName":"窗口","openType":""},
+      { "menuPath":"ued/tabs/index.html","menuName":"标签","openType":""},
+      { "menuPath":"ued/process/index.html","menuName":"过程","openType":""}
+      
+    ]
+  },
+  {
+    "icon":"3","menuName":"项目",
+    "childNode":[
+      { "menuPath":"goods/home.html","menuName":"商品组","openType":"_blank"},
+      { "menuPath":"account/home.html","menuName":"账户组","openType":"_blank"},
+      { "menuPath":"supplier/home.html","menuName":"商家组","openType":"_blank"},
+      { "menuPath":"order/home.html","menuName":"订单组","openType":"_blank"},
+      { "menuPath":"finance/home.html","menuName":"财务组","openType":"_blank"}
+    ]
+  },
+  {
+    "icon":"4","menuName":"测试",
+    "childNode":[
+      { "menuPath":"ued/test/add.html","menuName":"添加","openType":""},
+      { "menuPath":"ued/test/detail.html","menuName":"详情","openType":""},
+      { "menuPath":"ued/test/edit.html","menuName":"编辑","openType":""},
+      { "menuPath":"ued/test/index.html","menuName":"首页","openType":""},
+      { "menuPath":"ued/test/list.html","menuName":"列表","openType":""},
+      { "menuPath":"ued/test/register_success.html","menuName":"注册成功","openType":""},
+      { "menuPath":"ued/test/test.html","menuName":"测试","openType":""},
+      { "menuPath":"ued/test/test1.html","menuName":"测试1","openType":""}
+    ]
+  },
+  {
+    "icon":"5","menuName":"前端开发规范",
+    "childNode":[
+      { "menuPath":"frontend/1.html","menuName":"组件开发规范","openType":""},
+      { "menuPath":"frontend/2.html","menuName":"html开发规范","openType":""},
+      { "menuPath":"frontend/3.html","menuName":"css开发规范","openType":""},
+      { "menuPath":"frontend/4.html","menuName":"js开发规范","openType":""},
+      { "menuPath":"frontend/5.html","menuName":"jquery开发规范","openType":""}
+    ]
+  },
+  {
+    "icon":"6","menuName":"应用场景",
+    "childNode":[
+      { "menuPath":"ued/datagird/index.html","menuName":"datagird View","openType":""},
+      { "menuPath":"ued/datagird/xyorder.html","menuName":"县域零售订单管理","openType":""},
+      { "menuPath":"ued/datagird/citys.html","menuName":"tree实例","openType":""},
+      { "menuPath":"ued/datagird/areaChange.html","menuName":"编辑销售区域","openType":""},
+      { "menuPath":"ued/onlyre/index.html","menuName":" 仅退款","openType":""},
+      { "menuPath":"ued/datagird/demoText.html","menuName":"延迟处理","openType":""},
+      { "menuPath":"ued/datagird/comebox.html","menuName":"智能提示","openType":""},
+      { "menuPath":"ued/datagird/openDialog.html","menuName":"个性化弹框选择控件","openType":""},
+      { "menuPath":"ued/datagird/treeGridMove.html","menuName":"treegrid上下移动","openType":""},
+      { "menuPath":"ued/datagird/hoverTips.html","menuName":"鼠标移动提示信息","openType":""},
+      { "menuPath":"ued/order/index.html","menuName":" 选择控件","openType":""}
+    ]
+  }
+]

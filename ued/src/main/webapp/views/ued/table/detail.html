@@ -1,0 +1,63 @@
+﻿<!-- 如果不想更新整个框架代码可以先使用以下css。如果引用了最新的style.css则以下代码可以去除 -->
+<style type="text/css">
+  .tsh-win-page{border-width: 0px;border-radius:0; }
+  .tsh-win-page .window-body{border-width: 0px;border-radius:0;}
+  .tsh-page-content{ margin: 20px 0; position: relative; }
+  .tsh-page-title{position: relative; height: 30px;}
+  .tsh-page-title h3{ position: relative;padding: 0;margin: 0;height: 30px; line-height: 30px;}
+  .tsh-page-title h3 span{position: relative; z-index: 2 ;}
+  .tsh-page-title h3 span.back{ position: absolute; left: 20px; z-index: 3;  height: 30px; display: block; top: 50%; bottom: 50%; margin-top: -15px; background: #fff; padding: 0 6px 0 15px; }
+  .tsh-page-title .t1{font-size: 16px; background: #fff; padding: 0 6px 0 15px; margin-left: 30px}
+  .tsh-page-title .t2{ font-size: 12px; color: #777777;background: #fff; font-weight: normal; padding-right: 15px;}
+  .tsh-page-title .title-border{ width: 100%; border-top:1px solid #dee3e6; position: absolute;top: 50%; }
+  .tsh-form td {
+            padding: 10px 0
+        }
+        #tsh-title .btn-4 {
+            position: absolute;
+            top: -5px;
+        }
+</style>
+<div class="tsh-page-content">
+  <div class="tsh-page-title tsh-page-title-back">
+    <h3>
+      <span class="back">
+        <a  href="javascript:;" class="btn btn-4"  onclick="$('#win').dialog('close')">
+          < 返回</a></span>
+
+          <span class="t1" style="padding-left:85px;">商品详情</span>
+          <span class="t2">副标题</span>
+        </h3>
+        <div class="title-border"></div>
+      </div>
+
+      <form id="ff" method="post" class="tsh-form" style="padding-top:20px">
+        <table cellpadding="5">
+          <tr>
+            <td style="text-align:right"><span class="text-red">*</span>登录名：</td>
+              <td><input class="easyui-textbox" style="width:270px; height:30px;" type="text" id="name" name="name"
+                    missingMessage="请填写登录名"
+                    data-options="delay:500,validateOnCreate:false,validateOnBlur:true,required:true,validType:{isRegister:['../../../test/check.do','value','账户名重复!']},err:err"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <a href="javascript:void(0)" class="btn btn-1" onclick="submitForm()">保存</a>
+              <a href="javascript:void(0)" class="btn" onclick="$('#win').dialog('close')">取消</a>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <script>
+    function initPage(id){//初始化脚本必须写在这里，否则代码会无效
+        $('#name').textbox('setValue',id);
+         }
+     function submitForm() {
+          var isValid = $("#ff").form('validate');
+          if(isValid){
+            var data = $('#ff').serializeObj();//最新提供的表单序列化方法
+            console.log(data);
+        }
+    } 
+        </script>

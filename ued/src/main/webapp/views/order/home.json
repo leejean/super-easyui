@@ -1,0 +1,10 @@
+[
+  {
+    "icon":"3","menuName":"供应商",
+    "childNode":[
+      { "menuPath":"orderManagement.html","menuName":"订单管理","openType":""},
+      { "menuPath":"tradingParticulars.html","menuName":"交易详情","openType":""},
+      { "menuPath":"consignment.html","menuName":"发货","openType":""}
+    ]
+  }
+]

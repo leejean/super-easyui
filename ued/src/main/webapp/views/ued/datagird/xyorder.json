@@ -1,0 +1,115 @@
+{
+    "rows": [{
+        "areaId": 111111111111111,
+        "receivingInfo": {
+            "areaAddress": "浙江省丽水市松阳县新华北路116号",
+            "areaContact": "张三",
+            "areaName": "松阳县域中心",
+            "areaTel": "15024140426"
+        },
+        "orderInfoList": [{
+            "goodsInfoList": [{
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 111111,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包1",
+                "number": 2,
+                "orderDetailId": 111111,
+                "salesPrice": 300,
+                "skuId": 111111,
+                "skuMsg": "玫红色",
+                "storage": "不在仓"
+            }, {
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 222222,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包2",
+                "number": 2,
+                "orderDetailId": 222222,
+                "salesPrice": 300,
+                "skuId": 222222,
+                "skuMsg": "玫红色",
+                "storage": "武汉仓"
+            }],
+            "orderAmount": 1800,
+            "orderStatus": "部分发货",
+            "shopName": "松阳店蛤湖超市",
+            "orderId": 111111,
+            "buyerRemark": "需要发票"
+        }, {
+            "goodsInfoList": [{
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 333333,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包3",
+                "number": 2,
+                "orderDetailId": 333333,
+                "salesPrice": 300,
+                "skuId": 333333,
+                "skuMsg": "玫红色",
+                "storage": "不在仓"
+            }, {
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 444444,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包4",
+                "number": 2,
+                "orderDetailId": 444444,
+                "salesPrice": 300,
+                "skuId": 444444,
+                "skuMsg": "玫红色",
+                "storage": "不在仓"
+            }],
+            "orderAmount": 1800,
+            "orderStatus": "待发货",
+            "shopName": "松阳店蛤湖超市",
+            "orderId": 222222,
+            "buyerRemark": "需要发票"
+        }]
+    }, {
+        "areaId": 22222222222222,
+        "receivingInfo": {
+            "areaAddress": "河北省衡水市枣强县龙苑路45号",
+            "areaContact": "李四",
+            "areaName": "枣强县",
+            "areaTel": "15024155526"
+        },
+        "orderInfoList": [{
+            "goodsInfoList": [{
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 555555,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包5",
+                "number": 2,
+                "orderDetailId": 555555,
+                "salesPrice": 300,
+                "skuId": 555555,
+                "skuMsg": "玫红色",
+                "storage": "不在仓"
+            }, {
+                "afterSaleStatus": "待确认",
+                "cargoStatus": "未发货",
+                "goodsId": 666666,
+                "goodsImg": "http://127.0.0.1:32767/11.21.09/images/%E5%85%A8%E5%9B%BD%E9%9B%B6%E5%94%AE%E8%AE%A2%E5%8D%95/u24.png",
+                "goodsName": "潮流女包6",
+                "number": 2,
+                "orderDetailId": 666666,
+                "salesPrice": 300,
+                "skuId": 666666,
+                "skuMsg": "玫红色",
+                "storage": "武汉仓"
+            }],
+            "orderAmount": 1800,
+            "orderStatus": "部分发货",
+            "shopName": "洞坪村委会",
+            "orderId": 333333,
+            "buyerRemark": "需要发票"
+        }]
+    }],
+    "total": 2
+}

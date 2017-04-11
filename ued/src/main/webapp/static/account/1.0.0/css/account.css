@@ -1,0 +1,94 @@
+.account-information .account-information-top{
+	box-sizing: border-box;
+  	border: 1px solid rgb(222, 227, 230);
+	height: 130px;
+}
+.account-information .account-information-bottom{
+	box-sizing: border-box;
+	border: 1px solid rgb(222, 227, 230);
+	border-top: none;
+	padding: 26px;
+}
+.account-information .account-information-top li{
+	width: 33%;
+	box-sizing: border-box;
+	list-style: none;
+	height: 128px;
+	float: left;
+}
+.account-information ul,.account-information li{
+	margin: 0;
+	padding: 0;
+}
+.account-photo{
+	float: left;
+}
+.account-message{
+	overflow: hidden;
+    margin-left: 15px;
+    padding-top: 20px;
+}
+.account-balance{
+	border-left: 1px dashed rgb(222, 227, 230);
+	border-right: 1px dashed rgb(222, 227, 230);
+}
+.account-message-right{
+	float: left;
+	margin-left: 15px;
+}
+.account-message-name{
+	padding-left: 3px;
+    font-size: 16px;
+    padding-top: 18px;
+    margin: 0;
+}
+.account-message-vip{
+	padding-left: 3px;
+	font-size: 14px;
+    padding-top: 10px;
+    margin: 0;
+}
+.account-information-top li .account-icon{
+	padding-top: 40px;
+    padding-left: 30px;
+}
+.account-information-top li .btn{
+	margin-top: 10px;
+	margin-left: 30px;
+}
+.account-information-bottom .account-icon{
+	margin-right: 100px;
+}
+.account-safe{
+	box-sizing: border-box;
+	height: 62px;
+	border: 1px solid rgb(222, 227, 230);
+}
+.account-safe-left{
+	height: 60px;
+	background: #f2f7fd;
+	line-height: 60px;
+	position: relative;
+	width: 280px;
+	border-right: 1px solid rgb(222, 227, 230);
+	float: left;
+}
+.account-safe-left .i-judge{
+	margin: 0 7px 0 20px;
+}
+.account-safe-left span{
+	font-size: 14px;
+}
+.account-safe-left  .pay-psw{
+	margin-right: 45px;
+}
+.account-safe-left .arrow{
+	position: absolute;
+	right: -12px;
+	top: 20px;
+}
+.account-safe-right{
+	float: left;
+	height: 60px;
+	line-height: 60px;
+}

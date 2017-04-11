@@ -1,0 +1,112 @@
+<html >
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css">
+  <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/plugins/others/google-code-prettify/prettify.css">
+  <script src="../../../static/tsh/1.0.0/plugins/others/google-code-prettify/prettify.js"></script>
+</head>
+<body style="margin:0 20px;" onload="prettyPrint()">
+  <div id="tsh-title">
+    <h3><span class="t1">关于</span><span class="t2"></span>  </h3>
+    <div class="title-border"></div>
+  </div>
+<h2>一、特性</h2>
+<ol>
+  <li>提炼和服务淘实惠后台产品的交互语言和视觉风格。</li>
+  <li>基于jquery1.11.3、easyui1.4.5上封装高质量UI库</li>
+  <li>升级版本不影响用户使用（用户端缓存自动清除方式）</li>
+  <li>浏览器支持：IE8+</li>
+</ol>
+<h2>二、文档支持</h2>
+<ol>
+  <li>开发规范及开发指南文档（给前端人员使用sass、webpack等）</li>
+  <li>前端框架的基本结构（demo）</li>
+  <li>组件封装和使用指南（供后端人员使用）</li>
+  <li>目录结构规范说明</li>
+  <li>组件库方式提供方式（API）</li>
+  <li>安装使用</li>
+  <li>升级指南</li>
+  <li>更新日志</li>
+</ol>
+
+
+
+
+<h2>三、目录结构</h2>
+目录结构
+<ul>
+  <li>
+    webapp
+    <ul>
+        <li>static</li>
+        <ul>
+            <li>tsh(淘实惠PC前端框架)</li>
+            <li>xxx项目（项目名）</li>
+            <ul>
+                <li>js（项目js）</li>
+                <ul>
+                    <li>common（项目公用js）</li>
+                    <li>goods(index.js;list.js;add.js;edit.js;info.js)</li>
+                    <li>css（项目css）</li>
+                    <li>images（项目图片）</li>
+                </ul>
+            </ul>
+        </ul>
+        <li>views</li>
+        <ul>
+            <li>home.html</li>
+            <li>common(项目公共页面)</li>
+            <li>error</li>
+            <ul>
+                <li>404.html</li>
+                <li>500.html</li>
+            </ul>
+            <li>goods</li>
+            <ul>
+                <li>index.html（首页）</li>
+                <li>list.html（列表页）</li>
+                <li>edit.html(编辑页)</li>
+                <li>add.html(添加页)</li>
+            </ul>
+        </ul>
+    </ul>
+  </li>
+</ul>
+<h2>三：使用示例</h2>
+<p>
+  使用项目时，仅需要引入static内tsh目录。此目录内容为框架，会不断更新。以满足各种业务需求。
+</p>
+<pre class="prettyprint">
+  &#60;!DOCTYPE html&#62;
+  &#60;html&#62;
+  &#60;head&#62;
+      &#60;meta charset="UTF-8"&#62;
+      &#60;meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /&#62;
+      &#60;meta name="renderer" content="webkit"&#62;
+      &#60;title>淘实惠管理系统&#60;/title&#62;
+      &#60;link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0"&#62;
+      &#60;link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0"&#62;
+      &#60;script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"&#62;&#60;/script&#62;
+      &#60;script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"&#62;&#60;/script&#62;
+      &#60;script src="../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"&#62;&#60;/script&#62;
+  &#60;/head&#62;
+  &#60;body style="margin:0 20px;"&#62;
+  &#60;div id="tsh-title"&#62;
+    &#60;h3&#62;&#60;span class="t1"&#62;标题&#60;/span&#62;&#60;span class="t2"&#62;副标题&#60;/span&#62;  &#60;/h3&#62;
+    &#60;div class="title-border"&#62;&#60;/div&#62;
+  &#60;/div&#62;
+  &#60;/body&#62;
+&#60;/html&#62;
+</pre>
+
+
+
+<h2>链接：</h2>
+easyui：<a href="http://www.jeasyui.com/index.php" target="_blank">http://www.jeasyui.com/index.php</a>
+社区：<a href="http://bbs.jeasyuicn.com/" target="_blank">http://bbs.jeasyuicn.com/</a>
+</body>
+
+</html>

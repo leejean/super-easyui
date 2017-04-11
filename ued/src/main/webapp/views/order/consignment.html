@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发货</title>
+	<link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css">
+   	<link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/default/icons.css">
+    <link rel="stylesheet" type="text/css" href="../../static/home/1.0.0/home.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../static/goods/1.0.0/home.js"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+   	<style type="text/css">
+		#editAdress,#logisticsService,#confirmReceipt{ margin-top:50px; border: 1px solid #E3E8EC; padding-bottom:20px;		}
+		.font_16{ background:#F2F7FD;   line-height: 40px; color: #2a3238; }
+		.margin_L_15{margin-left: 15px;}
+		._cb{clear:both;}
+		.cl{clear: both;}
+		.listbox{width: 50%; float: left;border: 1px solid #E3E8EC; overflow: hidden;}
+		.br{border-right: 1px solid #e3e8ec;}
+		.bb{border-bottom: 1px solid #E3E8EC;}
+		.listbox div{overflow: hidden;}
+		.w100{width: 100%}
+		.w100 table td{ padding: 10px;}
+		.w50{width: 50%}
+		.w90px{ width:80px; padding-top: 10px;}
+		.imgdiv{ width: 60px; height: 60px; border: 1px solid gray; overflow: hidden;}
+		.fl{ float: left; 		}
+		.fr{ float: right;	}
+		.pd20{padding:10px; line-height: 20px; box-sizing: border-box;}
+		.cont{padding: 10px;}
+		.tr{text-align: right;}
+   	</style>
+</head>
+<body style="margin:0 20px" >
+	<div class="tsh-title tsh-title2">
+	   <h3>
+	        <div class="title-border"></div>
+	        <span class="t1">发货</span>
+	    </h3>
+	</div>
+	<div id="editAdress">
+		<div class="font_16 pd20 bb">第一步 <span style="margin-left:15px;">确认发货/退货信息</span></div>
+		<div style=" padding:15px 0 0 20px;">
+			<div style="float:left;display: inherit;">
+				<p>发货信息：<span>广东省深圳市南山区平山街道南山云谷山水楼6楼（**收）18576626456</span></p>
+			</div>
+			<div style="float:right; display: inherit;"><a href="javascript:;" class="btn btn-1" style="margin:10px 20px 0px 10px;">修改商家发货地址</a></div>
+		</div>
+		<div class="_cb"></div>
+	</div>
+	<div id="logisticsService" >
+		<div class="font_16 pd20 bb">第二步 <span class="margin_L_15">物流服务</span></div>
+		<form style="margin:20px;">
+			<label><input class="easyui-combobox" prompt="退货状态" style="width:170px; height:30px;"/></label>
+		</form>
+	</div>
+	<div id="confirmReceipt">
+		<div class="font_16  pd20 bb">第三步 <span  class="margin_L_15">确认收货信息并填写订单号</span></div>
+	</div>
+<br>
+
+	<div  class="listbox w100">
+		<div class="font_16 pd20 bb">订单编号：*********成交时间***********</div>
+		<div >
+			<div class="w50 fl br">
+				<div class="w100 fl bb" >
+					<table width="100%"><tr><td class="w90px br">
+						<div class="fl">
+							<a href="javascript:;" class="btn "><i class="i-op i-op-del-1"></i>删除</a>
+						</div>
+						</td><td width="75">
+							<div class="fl imgdiv">						</div>
+						</td><td>
+							<P>女包：</P>
+							<P>颜色：</P>
+							<P class="tr">价格900*2</P>
+						</td></tr></table>
+				</div>
+
+
+				<div class="w100 fl" >
+					<table width="100%"><tr><td class="w90px br">
+						<div class="fl">
+							<a href="javascript:;" class="btn "><i class="i-op i-op-del-1"></i>删除</a>
+						</div>
+					</td><td width="75">
+						<div class="fl imgdiv">						</div>
+					</td><td>
+						<P>女包：</P>
+						<P>颜色：</P>
+						<P class="tr">价格900*2</P>
+					</td></tr></table>
+				</div>
+			</div>
+			<div class="w50 fr" style="width: 49%; padding-top: 5px;">
+				<P>网站地址：</P>
+				<P>买家备注：</P>
+				<P>卖价备忘：<input type="textarea"  style="width:80%; height: 100px;"></P>
+			</div>
+		</div>
+		<div class="_cb"></div>
+	</div>
+	<!----------------------------------------------->
+
+<div class="cl"></div>
+	<div style="padding-top:20px;">
+		<a href="javascript:;" class="btn btn-1" id="J_BulkShipment"style="margin:5px">批量发货</a>
+		<a href="javascript:;" class="btn" id="J_BulkShipment"style="margin:5px"><i class="i-op i-op-print"></i>批量发货</a>
+		<a href="javascript:;" class="btn" id="J_BulkShipment"style="margin:5px"><i class="i-op i-op-print"></i>批量发货</a>
+	</div>
+</body>
+</html>

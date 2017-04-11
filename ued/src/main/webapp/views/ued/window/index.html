@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+      <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <!-- <script src="../../../static/tsh/1.0.0/locale/easyui-lang-zh_CN.js?gversion=1.0.0"></script> -->
+</head>
+<body style="margin:0 20px;">
+  <div id="tsh-title">
+    <h3><span class="t1">窗口</span><span class="t2"></span>  </h3>
+    <div class="title-border"></div>
+  </div>
+  <!-- <h3>窗口 Window</h3>
+  <a class="btn btn-l" href="javascript:;" onclick="openWindow()">窗口</a>
+  <div id="win"></div>
+   -->
+  <h3>对话框 dialog</h3>
+  <a class="btn" href="javascript:;" onclick="openDialog()">对话框</a>
+  <div id="dialog"></div>
+  <h3>消息 Messager</h3>
+  <a class="btn" href="javascript:;" onclick="show('info')">成功消息</a>
+  <a class="btn" href="javascript:;" onclick="show('error')">错误消息</a>
+  <a class="btn" href="javascript:;" onclick="show('question')">问题消息</a>
+  <a class="btn" href="javascript:;" onclick="show('warning')">警告消息</a>
+ 
+  <h3>警报 alert</h3>
+  <a class="btn" href="javascript:;" onclick="question()">问题</a>
+  <a class="btn" href="javascript:;" onclick="info()">成功</a>
+  <a class="btn" href="javascript:;" onclick="error()">错误</a>
+  <a class="btn" href="javascript:;" onclick="warning()">警告</a>
+  <a class="btn" href="javascript:;" onclick="alert()">默认</a>
+  <h3>互动 Messager</h3>
+  <a class="btn" href="javascript:;" onclick="confirm1()">确认</a>
+  <a class="btn" href="javascript:;" onclick="prompt1()">输入</a>
+
+  <h3>进度 progress</h3>
+  <a class="btn" href="javascript:;" onclick="progress()">进度条</a>
+
+ 
+  <script>
+
+  function show(showType){
+            $.messager.show({
+                title:'',
+                msg:'<i class="i-l i-l-'+showType+'"></i><span>分类解绑成功</span>',
+                showType:'fade',
+                timeout:100,
+                height:150,
+                width:300,
+                style:{
+                    right:'',
+                    bottom:''
+                },onClose:function(){
+                   console.log(11);
+                }
+            });
+        }
+  function progress(){
+            var win = $.messager.progress({
+              width:400,
+                title:'',
+                msg:'读取数据...'
+            });
+            setTimeout(function(){
+                $.messager.progress('close');
+            },5000)
+        }
+  function confirm1(){
+    $.messager.confirm({
+      title:'删除提示',
+      msg:'<div class="content">你确认要删除这条记录吗?</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      cancel:'<i class="i-close"></i> 取消',
+      fn:function(r){
+      	if (r){
+          $.messager.alert({
+            title:'成功提示',
+            msg:'<div class="content">完成</div>',
+            ok:'<i class="i-ok"></i> 确定',
+            icon:'info'
+          });
+      	}
+      }
+    });
+  }
+
+  function prompt1() {
+    $.messager.prompt({
+      title:'标题',
+       width:400,
+      msg:'<div class="content">输入电话号码</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      cancel:'<i class="i-close"></i> 取消',
+      fn:function(r){
+      	if (r){
+          $.messager.alert({
+            title:'成功提示',
+            width:400,
+            msg:'<div class="content">您输入了'+r+'</div>',
+            ok:'<i class="i-ok"></i> 确定',
+            icon:'info'
+          });
+      	}
+      }
+    });
+  }
+
+  /*window start*/
+  function openWindow(){
+    $("#win").window({
+    width:600,
+    height:400,
+    modal:true,
+    title:'标题',
+    content:"测试"
+    });
+  }
+
+  /*dialog start*/
+  function openDialog(){
+    $("#dialog").dialog({
+      title:'提示',
+      width:600,
+      height:400,
+      content:"测试"
+    });
+  }
+  /*messager alert start*/
+  function alert(){
+    $.messager.alert({
+      title:'提示1',
+      
+      msg:'<div class="content">默认提示！</div>',
+      ok:'<i class="i-ok"></i> 确定'
+    });
+  }
+  function question() {
+    $.messager.alert({
+      title:'问题提示1',
+      msg:'<div class="content">问题提示！</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      icon:'question',
+      timeout:1000
+    });
+  }
+  function info() {
+    $.messager.alert({
+      title:'成功提示',
+      msg:'<div class="content">成功提示！</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      icon:'info'
+    });
+  }
+  function error(id) {
+    $.messager.alert({
+      title:'错误提示',
+      msg:'<div class="content">错误提示文字</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      icon:'error'
+    });
+  }
+  function warning(id) {
+    $.messager.alert({
+      title:'警告提示',
+      msg:'<div class="content">警告文字</div>',
+      ok:'<i class="i-ok"></i> 确定',
+      icon:'warning'
+    });
+  }
+
+
+  </script>
+  </body>
+</html>

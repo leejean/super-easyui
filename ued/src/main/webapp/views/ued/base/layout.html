@@ -1,0 +1,100 @@
+<html >
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+  <meta name="renderer" content="webkit">
+</head>
+
+<body >
+
+<h2>一、特性</h2>
+<ol>
+  <li>提炼和服务淘实惠后台产品的交互语言和视觉风格。</li>
+  <li>jquery、easyui、easyloader上封装高质量UI库</li>
+  <li>升级版本不影响用户使用（用户端缓存自动清除方式）</li>
+  <li>支持IE8+</li>
+</ol>
+<h2>二、文档支持</h2>
+<ol>
+  <li>开发规范及开发指南文档（给前端人员使用sass、webpack等）</li>
+  <li>前端框架的基本结构（demo）</li>
+  <li>组件封装和使用指南（供后端人员使用）</li>
+  <li>目录结构规范说明</li>
+  <li>组件库方式提供方式（API）</li>
+  <li>安装使用</li>
+  <li>升级指南</li>
+  <li>更新日志</li>
+</ol>
+
+
+
+
+<h2>三、目录结构</h2>
+目录结构
+<ul>
+  <li>
+    webapp
+    <ul>
+        <li>static</li>
+        <ul>
+            <li>tsh(淘实惠PC前端框架)</li>
+            <li>xxx项目（项目名）</li>
+            <ul>
+                <li>js（项目js）</li>
+                <ul>
+                    <li>common（项目公用js）</li>
+                    <li>goods(index.js;list.js;add.js;edit.js;info.js)</li>
+                    <li>css（项目css）</li>
+                    <li>images（项目图片）</li>
+                </ul>
+            </ul>
+        </ul>
+        <li>views</li>
+        <ul>
+            <li>home.html</li>
+            <li>common(项目公共页面)</li>
+            <li>error</li>
+            <ul>
+                <li>404.html</li>
+                <li>500.html</li>
+            </ul>
+            <li>goods</li>
+            <ul>
+                <li>index.html（首页）</li>
+                <li>list.html（列表页）</li>
+                <li>edit.html(编辑页)</li>
+                <li>add.html(添加页)</li>
+            </ul>
+        </ul>
+    </ul>
+  </li>
+</ul>
+<h2>三：使用示例</h2>
+<textarea style="width:100%;height:200px;">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠供应商管理平台</title>
+    <link rel="stylesheet" type="text/css" href="../static/tsh/1.0.0/themes/default/easyui.css">
+    <script src="../static/tsh/1.0.0/jquery.min.js"></script>
+    <script src="../static/tsh/1.0.0/jquery.easyui.min.js"></script>
+    <script src="../static/tsh/1.0.0/easyloader.js"></script>
+    <script src="../static/js/lib/easyui/style.js"></script>
+    <script src="../static/gy/1.0.0/js/common/homeMenu.js"></script>
+    <body>
+    </body>
+</html>
+</textarea>
+
+
+
+<h2>链接：</h2>
+easyuihttp://www.jeasyui.com/index.php
+社区：http://bbs.jeasyuicn.com/
+</body>
+
+</html>

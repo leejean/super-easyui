@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+      <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/plugins/datagrid-cellediting.js"></script>
+</head>
+<body style="margin:0 20px;">
+  <div id="tb" >
+      <div id="tsh-title">
+        <h3><span class="t1">全国/县域 代销订单管理</span>  </h3>
+        <div class="title-border"></div>
+      </div>
+
+  </div>
+
+
+  <div class="easyui-tabs" fit="true"  tabHeight="40" style="width:100%;height:auto;padding-top:10px;padding-bottom:20px;">
+      <div title="待发货<span style='color:red'>（5）</span>" style="padding:10px">
+
+          <form class="tsh-toolbar" id="formsen" action="#">
+                <label><span>商品名称：</span>
+                    <input  class="easyui-textbox" data-options="required:true,validType:'length[3,10]',tipPosition:'top'" style="width:170px; height:30px;" prompt="输入用户名"/>
+                </label>
+
+                <label><span>下单网点：</span>
+                    <input class="easyui-textbox"  data-options="required:true,validType:'email',tipPosition:'top'" style="width:170px; height:30px;" prompt="输入邮箱"/>
+                </label>
+
+
+              <label><span>成交时间：</span>
+                  <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+                  <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+              </label>
+
+              <label><span>订单编号：</span>
+                  <input  class="easyui-textbox" data-options="required:true,validType:'length[3,10]',tipPosition:'top'" style="width:170px; height:30px;" prompt="输入用户名"/>
+              </label>
+
+              <label><input class="easyui-combobox" prompt="选择商品状态" style="width:170px; height:30px;" id="goodsStatus"  /></label>
+
+              <label><a href="javascript:;" class="btn btn-1" type="submit" id="J_Search"><i class="i-search"></i>搜索</a></label>
+              <label><a href="javascript:;" class="btn">批量删除</a></label>
+          </form>
+
+      </div>
+      <div title="已发货<span style='color:red'>（2）</span>" style="padding:10px">
+          分配角色
+      </div>
+      <div title="退款中<span style='color:red'>（8）" style="padding:10px">
+          分配权限
+      </div>
+      <div title="全部<span style='color:red'>（7）" style="padding:10px">
+          分配权限
+      </div>
+  </div>
+
+
+
+  <table id="tt" style="width:100%;height:350px"  class="easyui-datagrid"
+         singleSelect="true" fitColumns="true" remoteSort="false"
+         url="json.java" pagination="true" sortOrder="desc" sortName="itemid">
+      <thead>
+      <tr>
+          <th field="itemid"  sortable="true">商品名称</th>
+          <th field="listprice"  sortable="true">单价</th>
+          <th field="unitcost"  sortable="true">数量</th>
+          <th field="attr1"  sortable="true">售后状态</th>
+          <th field="status" sortable="true">货物状态</th>
+
+          <th field="listprice"  sortable="true">仓储</th>
+          <th field="unitcost" sortable="true">网点信息</th>
+          <th field="attr1"  sortable="true">订单状态</th>
+          <th field="status"  sortable="true">订单金额</th>
+      </tr>
+      </thead>
+  </table>
+
+  <script src="../../../static/ued/1.0.0/datagird/dt.js"></script>
+<script language="JavaScript">
+ $(document).ready(function(){
+
+    $('#J_Search').click(function () {
+        var send = $("form").serialize();
+        console.info(send);
+    })
+
+//表格
+     $(function(){
+         $('#tt').datagrid({
+             view: cardview
+         });
+     });
+
+ })
+
+</script>
+</body>
+</html>

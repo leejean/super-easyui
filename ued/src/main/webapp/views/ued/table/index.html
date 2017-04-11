@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+      <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/plugins/datagrid-cellediting.js"></script>
+    
+</head>
+<body style="margin:0 20px;">
+  <div id="tb" >
+      <div id="tsh-title">
+        <h3><span class="t1">系统异常日志</span><span class="t2">管理平台系统用户，新增平台用户默认密码为123456</span>  </h3>
+        <div class="title-border"></div>
+      </div>
+      <form class="tsh-toolbar">
+        <label><a href="../form/index.html" class="btn btn-1" id="J_Add"><i class="i-add" ></i>添加账号</a></label>
+        <label><span>用户名：</span><input  class="easyui-textbox"
+           data-options="required:true,validType:'length[3,10]',tipPosition:'top'" style="width:170px; height:30px;" prompt="输入用户名"/></label>
+        <label><span>邮箱：</span><input class="easyui-textbox"  data-options="required:true,validType:'email',tipPosition:'top'" style="width:170px; height:30px;" prompt="输入邮箱"/></label>
+        <label><input class="easyui-combobox" prompt="选择商品状态" style="width:170px; height:30px;" id="goodsStatus"  /></label>
+        <label><span>时间范围：</span>
+          <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+          <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+        </label>
+
+        <label><a href="javascript:;" class="btn btn-1" id="J_Search"><i class="i-search"></i>搜索</a></label>
+        <label><a href="javascript:;" class="btn">批量删除</a></label>
+      </form>
+  </div>
+
+
+  <table id="dataGrid" class="easyui-datagrid" ></table>
+<script src="../../../static/ued/1.0.0/table/index.js"></script>
+</body>
+</html>
+
+

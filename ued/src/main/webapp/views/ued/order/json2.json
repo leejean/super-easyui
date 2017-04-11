@@ -1,0 +1,86 @@
+123[{
+    "total": 139,
+    "rows": [
+        {
+            "id": 1,
+            "areaNo": "123",
+            "areaName": "宝安运营中心",
+            "province": "广东省",
+            "city": "深圳市",
+            "area": "宝安区"
+        },
+        {
+            "id": 2,
+            "areaNo": "456",
+            "areaName": "南山运营中心",
+            "province": "广东省",
+            "city": "深圳市",
+            "area": "宝安区"
+        },
+        {
+            "id": 12,
+            "areaNo": "sdasdad",
+            "areaName": "保定运营中心",
+            "province": "北京市",
+            "city": "直辖县",
+            "area": "密云县"
+        },
+        {
+            "id": 42,
+            "areaNo": "551001",
+            "areaName": "庐江县域运营中心",
+            "province": "安徽省",
+            "city": "合肥市",
+            "area": "庐江县"
+        },
+        {
+            "id": 43,
+            "areaNo": "551002",
+            "areaName": "肥东县域运营中心",
+            "province": "安徽省",
+            "city": "合肥市",
+            "area": "肥东县"
+        },
+        {
+            "id": 68,
+            "areaNo": "23423t",
+            "areaName": "ertwert",
+            "province": "北京市",
+            "city": "直辖区",
+            "area": "东城区"
+        },
+        {
+            "id": 72,
+            "areaNo": "4564567",
+            "areaName": "7456764",
+            "province": "北京市",
+            "city": "直辖区",
+            "area": "西城区"
+        },
+        {
+            "id": 78,
+            "areaNo": "qwqreqw",
+            "areaName": "rqwerqwr",
+            "province": "北京市",
+            "city": "直辖区",
+            "area": "东城区"
+        },
+        {
+            "id": 82,
+            "areaNo": "asdfaasdfas",
+            "areaName": "fasdfasdfa",
+            "province": "天津市",
+            "city": "直辖县",
+            "area": "静海县"
+        },
+        {
+            "id": 83,
+            "areaNo": "asdfasdfasf",
+            "areaName": "asdfasf",
+            "province": "河北省",
+            "city": "秦皇岛市",
+            "area": "海港区"
+        }
+    ]
+}
+]

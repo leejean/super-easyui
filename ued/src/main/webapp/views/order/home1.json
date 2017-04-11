@@ -1,0 +1,12 @@
+
+
+[
+  
+  {
+    "icon":"3","menuName":"商品管理",
+    "childNode":[
+      { "menuPath":"list.html","menuName":"商品列表","openType":""},
+      { "menuPath":"add.html","menuName":"发布商品","openType":""}
+    ]
+  }
+]

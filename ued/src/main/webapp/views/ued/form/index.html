@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css">
+    
+    <script src="../../../static/tsh/1.0.0/jquery.min.js"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js"></script>
+    <script src="../../../static/tsh/1.0.0/plugins/others/webuploader-0.1.5/webuploader.nolog.min.js"></script>
+    <script src="../../../static/tsh/1.0.0/plugins/IE/modernizr-2.3.8.js"></script>
+    <style>
+        .form td {
+            padding: 10px 0
+        }
+        #tsh-title .btn-4 {
+            position: absolute;
+            top: -5px;
+        }
+    </style>
+</head>
+
+<body style="margin:0 20px;">
+    <div id="tsh-title">
+        <h3><a  href="javascript:;" class="btn btn-4" onclick="window.history.back(0);">< 返回</a>
+      <span class="t1" style="padding-left:55px;"></span><span class="t2"></span>  </h3>
+        <div class="title-border"></div>
+    </div>
+    <form id="ff" method="post" class="form">
+        <table cellpadding="5">
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 登录名：</td>
+                <td>
+                    <input class="easyui-textbox" style="width:270px; height:30px;" type="text" name="name"
+                    missingMessage="请填写登录名"
+                    data-options="delay:500,validateOnCreate:false,validateOnBlur:true,required:true,validType:{isRegister:['../../../test/check.do','value','账户名重复!']},err:err">
+                </td>
+                <!-- isRegister:['../../../test/check.do','value','账户名重复!']}
+                  数据库重复值验证
+                  validateOnCreate:false,设置第一次加载不验证，默认值是true
+                  validateOnBlur是easyui1.4.5新特性，失去焦点才验证，不过目前没有效果。
+
+                    第一个是请求地址，第二个是请求的参数，第三个值是错误提示
+                -->
+            </tr>
+            <tr>
+                <td style="text-align:right">账号状态：</td>
+                <td>
+                    <select class="easyui-combobox" name="status" style="width:270px; height:30px;">
+                        <option value="true" selected="selected">正常</option>
+                        <option value="false">冻结</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 用户邮箱：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" style="width:270px; height:30px;" name="email"
+                    data-options="validateOnCreate:false,required:true,validType:['email','length[0,20]'],err:err">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 电话号码：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" style="width:270px; height:30px;" name="tel" data-options="validateOnCreate:false,required:true,validType:'tel',err:err,inputLimit:['tel']">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 手机号码：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" style="width:270px; height:30px;" name="mobile" data-options="validateOnCreate:false,required:true,validType:'mobile',err:err,inputLimit:['numonly']">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 身份证号码：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" style="width:270px; height:30px;" id="idcard" name="idcard" data-options="validateOnCreate:false,required:true,validType:'idcard',err:err,inputLimit:['numonly']" >
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 银行卡号码：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" style="width:270px; height:30px;" id="bankCard" name="bankCard" data-options="validateOnCreate:false,required:true,validType:'isBankCardNo',err:err"  >
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 地址：</td>
+                <td>
+                    <input name="province" id="province" style="width: 85px;height:30px;" validType="checkSelect['选择省/市','请选择省/市']" data-options="validateOnCreate:false">
+                    <input name="city" id="city" style="width: 85px;height:30px;margin-left:8px;" validType="checkSelect['选择区/县','请选择区/县']" data-options="validateOnCreate:false">
+                    <input name="county" id="county" style="width: 85px;height:30px;margin-left:8px;" validType="checkSelect['选择乡/镇','请选择选择乡/镇']" data-options="validateOnCreate:false">
+                    <input name="village" id="village" style="width: 85px;height:30px;margin-left:8px;" validType="checkSelect['选择村','请选择选择乡/镇']" data-options="validateOnCreate:false">
+                    <input name="group" id="group" style="width: 85px;height:30px;margin-left:8px;" validType="checkSelect['选择组','请选择选择乡/镇']" data-options="validateOnCreate:false" >
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">密码：</td>
+                <td>
+                    <input class="easyui-textbox" type="password" name="password" validType="length[4,32]" data-options="validateOnCreate:false,required:true,err:err" style="width:270px;height:30px" missingMessage="请填写新密码">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">确认密码：</td>
+                <td>
+                    <input class="easyui-textbox" name="repassword" validType="equalTo['#ff input[name=password]']" missingMessage="请再次填写新密码" type="password"
+                    data-options="validateOnCreate:false,required:true,err:err" style="width:270px;height:30px">
+                </td>
+            </tr>
+            <tr>
+                    <td>商品总库存：</td>
+                    <td>
+                        <input class="easyui-textbox" style="width:100px; height:30px;" name="counts" prompt="" data-options="inputLimit:['int:[900000000]']">
+                        <input class="easyui-combobox" style="width:100px; height:30px;" name="unitName" id="unitName">
+                      </td>
+                </tr>
+           <tr>
+                    <td>商品重量(KG)：</td>
+                    <td>
+                        <input class="easyui-textbox" style="width:100px; height:30px;" name="weight" prompt="0-9999.999" data-options="inputLimit:['float:[3,999.999]']">
+                        </td>
+                </tr>
+                <tr>
+                    <td>商品体积(M3)：</td>
+                    <td>
+                        <input class="easyui-textbox" style="width:100px; height:30px;" name="volume" prompt="0-999.999999" data-options="inputLimit:['float:[6,999.999999]']">
+                        </td>
+                </tr>
+                <tr>
+                    <td>价格</td>
+                    <td>
+                        <input class="easyui-textbox" style="width:100px; height:30px;" name="volume" prompt="0-100,000,000.00" data-options="inputLimit:['float:[2,100000000.01]']">
+                    </td>
+                </tr>
+            <tr>
+                <td style="text-align:right">复选框：</td>
+                <td>
+               
+                    <input id="check-1" type="checkbox" class="checkbox" name="check-1" checked="checked">
+                    <label for="check-1">Apples</label>
+                    <input id="check-2" type="checkbox" class="checkbox" name="check-1">
+                    <label for="check-2">Oranges</label>
+                </td>
+            </tr>
+             <tr>
+                <td style="text-align:right">单选框：</td>
+                <td>
+                    <input id="radio-1" type="radio" class="radio" name="r-group-1" checked="checked">
+                    <label for="radio-1">Day</label>
+                    <input id="radio-2" type="radio" class="radio" name="r-group-1">
+                    <label for="radio-2">Night</label>
+                </td>
+            </tr>
+           
+            <tr>
+                <td style="text-align:right">详细地址：</td>
+                <td>
+                  <input class="easyui-textbox"  style="width:270px;height:30px">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right" valign="top">文本域：</td>
+                <td>
+                    <textarea  style="width:270px;height:60px"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right"><span class="text-red">*</span> 身份证照：</td>
+                <td>
+                    <img alt="暂无图片" id="thumbnail1" width="70" height="70" src="../../../static/tsh/1.0.0/themes/default/images/nopic.png" style="float:left;display:inline-block;margin-right:6px" />
+                    
+                    <div id="filePicker1" class="filePicker" style="padding-top:20px; line-height:32px; float:left;padding-right:6px">上传图片</div>
+                    <div style=" line-height:70px;width:600px;">(建议图片尺寸600*600，图片大小不超过2M，支持jpg、jpeg格式)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <a href="javascript:void(0)" class="btn btn-1" onclick="submitForm()">保存</a>
+                    <a href="javascript:void(0)" class="btn" onclick="clearForm()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+
+         $(function() {
+         
+         
+            initAddress();//初始化地址
+           
+                goodsImageUpload('#filePicker1','#thumbnail1');
+
+                //限制只能输入数字
+                // $('#idcard').textbox('textbox').keydown(function (e) {
+                //     var value = $(this).val();
+                //     value = value.replace(/\D+/g,'');
+                //     $(this).val(value);
+                // });
+                // $('#idcard').textbox('textbox').keyup(function (e) {
+                //     var value = $(this).val();
+                //     value = value.replace(/\D+/g,'');
+                //     $(this).val(value);
+                // });
+               
+                //限制只能输入数字
+                // $('#bankCard').textbox('textbox').keydown(function (e) {
+                //     var value = $(this).val();
+                //     value = value.replace(/\D+/g,'');
+                //     $(this).val(value);
+                // });
+             
+                $('#bankCard').textbox('textbox').keyup(function (e) {
+                    var value = $(this).val();
+                    value = value.replace(/\D+/g,'');
+                    $(this).val(value);
+                });
+           
+        })
+        function submitForm() {
+            $('#ff').form('submit', {
+                url: "",
+                onSubmit: function(param) {
+                    return $(this).form('enableValidation').form('validate');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+
+        function clearForm() {
+            $('#ff').form('clear');
+        }
+
+        function load() {
+            $('#ff').form('load', {
+                name: 'myname'
+            });
+        }
+
+
+
+
+        function initAddress() {
+        	
+        	$.ajax({
+                type: "POST",
+                url: "http://172.16.1.97:8992/share/getAddress.do?cid="+ 0,
+                cache: false,
+                async: false,
+                dataType: "jsonp",
+                success: function(data) {
+                    var data = $.merge([{
+                        id: 0,
+                        name: "选择区/县"
+                    }], data);
+                    $("#province").combobox("loadData", data);
+                    
+                }
+            });
+            // 下拉框选择控件，下拉框的内容是动态查询数据库信息
+            $('#province').combobox({
+                cache: false,
+                editable: false,
+                // panelHeight: 'auto',//自动高度适合
+                valueField: 'id',
+                textField: 'name',
+                onChange: function() {
+                    $("#city").combobox("setValue", '');
+                    $("#county").combobox("setValue", '');
+                    $("#city").combobox("loadData", {});
+                    $("#county").combobox("loadData", {});
+                    var province = $('#province').combobox('getValue');
+                    if (province != 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://172.16.1.97:8992/share/getAddress.do?cid=" + province,
+                            cache: false,
+                            dataType: "jsonp",
+                            success: function(data) {
+                                var data = $.merge([{
+                                    id: 0,
+                                    name: "选择区/县"
+                                }], data);
+                                $("#city").combobox("loadData", data);
+                            }
+                        });
+                    }
+                }
+            });
+            $('#city').combobox({
+                editable: false, //不可编辑状态
+                cache: false,
+                //panelHeight: 'auto',//自动高度适合
+                valueField: 'id',
+                textField: 'name',
+                onChange: function() {
+                    $("#county").combobox("setValue", '');
+                    $("#county").combobox("loadData", {});
+                    var city = $('#city').combobox('getValue');
+                    if (city != 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://172.16.1.97:8992/share/getAddress.do?cid=" + city,
+                            cache: false,
+                            dataType: "jsonp",
+                            success: function(data) {
+                                var data = $.merge([{
+                                    id: 0,
+                                    name: "选择乡/镇"
+                                }], data);
+                                $("#county").combobox("loadData", data);
+                            }
+                        });
+                    }
+                }
+            });
+            $('#county').combobox({
+                editable: false, //不可编辑状态
+                cache: false,
+                //panelHeight: 'auto',//自动高度适合
+                valueField: 'id',
+                textField: 'name',
+                onChange: function() {
+                    $("#village").combobox("setValue", '');
+                    $("#village").combobox("loadData", {});
+                    var county = $('#county').combobox('getValue');
+                    if (county != 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://172.16.1.97:8992/share/getAddress.do?cid=" + county,
+                            cache: false,
+                            dataType: "jsonp",
+                            success: function(data) {
+                                var data = $.merge([{
+                                    id: 0,
+                                    name: "选择村"
+                                }], data);
+                                $("#village").combobox("loadData", data);
+                            }
+                        });
+                    }
+                }
+            });
+            $('#village').combobox({
+                editable: false, //不可编辑状态
+                cache: false,
+                //panelHeight: 'auto',//自动高度适合
+                valueField: 'id',
+                textField: 'name',
+                onChange: function() {
+                    $("#group").combobox("setValue", '');
+                    $("#group").combobox("loadData", {});
+                    var village = $('#village').combobox('getValue');
+                    if (village != 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://172.16.1.97:8992/share/getAddress.do?cid=" + village,
+                            cache: false,
+                            dataType: "jsonp",
+                            success: function(data) {
+                                var data = $.merge([{
+                                    id: 0,
+                                    name: "选择组"
+                                }], data);
+                                $("#group").combobox("loadData", data);
+                            }
+                        });
+                    }
+                }
+            });
+            $('#group').combobox({
+                editable: false, //不可编辑状态
+                cache: false,
+                // panelHeight: 'auto',//自动高度适合
+                valueField: 'id',
+                textField: 'name'
+            });
+        }
+
+ /**
+ * 商品图片上传
+ */
+
+var goodsImageUpload = function(selector,smallview,bigview){
+    var setHeader = function(object, data, headers) {
+        if(document.all){ 
+        headers['Access-Control-Allow-Origin'] = '*'; 
+        headers['Access-Control-Request-Headers'] = 'content-type'; 
+        headers['Access-Control-Request-Method'] = 'POST'; 
+        }
+    } 
+    var BASE_URL ="../../../";
+     WebUploader.create({
+        auto: true,
+        swf: BASE_URL + 'static/tsh/1.0.0/plugins/webuploader-0.1.5/Uploader.swf',
+        server: BASE_URL + 'test/uploadimg.do',
+        pick: {id:selector,multiple :false},
+        accept: {
+            title: 'Images',
+            extensions: 'jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        },
+        fileSingleSizeLimit:2097152,
+        onUploadBeforeSend:setHeader,
+        onUploadError :function( file,reason ) {
+            //$error.text('上传失败');
+            if(reason=="http"){
+                alert("网络异常！");
+            }else{
+                alert("不支持的图片,换张图片试试!");
+            }
+            
+        },
+        onUploadProgress: function( file,percentage) {
+        },
+        onUploadSuccess: function( file,response  ) {
+       
+        var ossImage = response.path;
+
+        console.log(ossImage);
+        $(smallview).attr("src",ossImage);
+         this.removeFile( file );
+        },
+        onError: function( file,response  ) {
+            switch(file){
+                case "F_EXCEED_SIZE":
+                    alert("图片大小不超过2M");
+                    break;
+                case "F_DUPLICATE":
+                    alert("请勿重复提交，换张图片试试!");
+                    break;
+                case "Q_TYPE_DENIED":
+                    alert("请上传jpg,jpeg格式的图片");
+                    break;
+                default:
+                    alert("上传失败！");
+                break;
+            }
+        }
+
+    });
+};
+    </script>
+</body>
+
+</html>

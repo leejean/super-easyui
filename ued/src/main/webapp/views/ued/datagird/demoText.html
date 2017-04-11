@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>延迟处理</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/ued/1.0.0/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			code {
+				font-family: monospace;
+				color: #2d2d2d;
+				background: whitesmoke;
+				display: block;
+				padding: 10px;
+				border: 1px solid #ccc;
+				overflow: scroll;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tsh-title">
+			<h3><span class="t1">编辑销售区域</span><span class="t2"></span></h3>
+			<div class="title-border"></div>
+		</div>
+
+		<p>演示代码：按F12打开浏览器调试模式，选择console可以查看效果</p>
+		<form class="tsh-toolbar">
+			<label><input id="searchId" class="easyui-textbox" data-options="validType:'length[1,20]'" style="width: 200px; height: 30px;" prompt="请输入"></label>
+		</form>
+			<pre>
+        <code>
+           
+	/**
+	 * obj: 要监听的jquery对象 ,如 $('#对象id');如果是easyui生成的标签需要参考其API
+	 * tims: 毫秒数  如 1000
+	 * callback：需要回调的方法
+	 */
+	function lazyExecution(obj, times, callback) {
+	    var wait;
+		// 监听搜索框架输入数据 
+		obj.keyup(function(e) {
+			clearTimeout(wait);
+			wait = setTimeout(function(){callback(obj.val())},times);
+		});
+		obj.keydown(function(e) {
+			clearTimeout(wait);
+			wait = setTimeout(function(){callback(obj.val())},times);
+		});
+	}
+	
+	// 调用方法
+	lazyExecution($('#searchId'),1000,getData);
+           
+        </code>
+        </pre>
+		<script>
+			$(function() {
+				// 获取后台数据的方法
+				function getData(val) {
+					console.log(val);
+					$.ajax({
+						type: "get",
+						url: "tree_data.json",
+						dataType: "json",
+						success: function(data) {
+							console.log('=======');
+						}
+					});
+				}
+				/**
+				 * 功能描述：延迟执行
+				 * obj: 要监听的input对象  如 $('#searchId')
+				 * tims: 毫秒数  如 1000
+				 * callback：需要回调的方法
+				 */
+				function lazyExecution(obj, times, callback) {
+					var wait;
+					// 监听搜索框架输入数据 
+					obj.keyup(function(e) {
+						clearTimeout(wait);
+						wait = setTimeout(function() {
+							callback(obj.val())
+						}, times);
+					});
+					obj.keydown(function(e) {
+						clearTimeout(wait);
+						wait = setTimeout(function() {
+							callback(obj.val())
+						}, times);
+					});
+				}
+				lazyExecution($('#searchId').textbox('textbox'), 1000, getData);
+			});
+		</script>
+	</body>
+
+</html>

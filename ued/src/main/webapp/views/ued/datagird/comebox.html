@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>智能提示</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+
+		<style>
+			code {
+				font-family: monospace;
+				color: #2d2d2d;
+				background: whitesmoke;
+				display: block;
+				padding: 10px;
+				border: 1px solid #ccc;
+				overflow: scroll;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tsh-title">
+			<h3><span class="t1">自动完成绑定动态数据</span><span class="t2"></span></h3>
+			<div class="title-border"></div>
+		</div>
+
+		<form class="tsh-toolbar">
+			<label>
+				<input class="easyui-textbox" id="st" name="dept" style="width:100%">
+			</label>
+		</form>
+			<pre>
+        <code>
+           
+    var sid = 111; // 模拟数据
+	/**
+	 * 自动辅助提示
+	 * @param {Object} obj 要绑定的对象 
+	 * @param {Object} url 数据接口地址
+	 * @param {Object} parmKay 扩展参数的key
+	 * @param {Object} pram 扩展参数
+	 * @param {Object} type 请求类型
+	 * @param {Object} times 延迟时间，单位毫秒,[可不写]默认为1000毫秒  
+	 */
+	function autoTips(opts) {
+		var wait;
+		opts.obj.combobox({
+			url: opts.url,
+			method: opts.type,
+			valueField: opts.id,
+			textField: opts.text,
+			onChange: function(newValue, oldValue) {
+				clearTimeout(wait);
+				wait = setTimeout(function() {
+					opts.obj.combobox('reload', opts.url + '?' + opts.parmKay + '=' + newValue + opts.pram);
+				}, opts.times != 'undefined' ? 1000 : opts.times);
+			},
+			loadFilter: function(data) {
+				return data.data != 'undefined' ? data : data.data;
+			}
+		});
+	}
+	// 调用方法
+	autoTips({
+		obj: $('#st'),
+		url: 'json.json',
+		parmKay: 'txt',
+		pram: '&sid=' + sid,
+		type: 'get'
+	});
+           
+        </code>
+        </pre>
+		<script>
+			$(function() {
+				var sid = 111; // 模拟数据
+				/**
+				 * 自动辅助提示
+				 * @param {Object} obj 要绑定的对象 
+				 * @param {Object} url 数据接口地址
+				 * @param {Object} parmKay 扩展参数的key
+				 * @param {Object} pram 扩展参数
+				 * @param {Object} type 请求类型
+				 * @param {Object} times 延迟时间，单位毫秒,[可不写]默认为1000毫秒  
+				 */
+				function autoTips(opts) {
+					var wait;
+					opts.obj.combobox({
+						url: opts.url,
+						method: opts.type,
+						valueField: opts.id,
+						textField: opts.text,
+						onChange: function(newValue, oldValue) {
+							clearTimeout(wait);
+							wait = setTimeout(function() {
+								opts.obj.combobox('reload', opts.url + '?' + opts.parmKay + '=' + newValue + opts.pram);
+							}, opts.times != 'undefined' ? 1000 : opts.times);
+						},
+						loadFilter: function(data) {
+							return data.data != 'undefined' ? data : data.data;
+						}
+					});
+				}
+				// 调用方法
+				autoTips({
+					obj: $('#st'),
+					url: 'json.json',
+					parmKay: 'txt',
+					pram: '&sid=' + sid,
+					type: 'get'
+				});
+			});
+		</script>
+	</body>
+
+</html>

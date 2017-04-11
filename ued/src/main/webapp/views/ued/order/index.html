@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+
+</head>
+<body style="margin: 0 10px;">
+  <div id="tsh-title">
+    <h3><span class="t1">添加网点</span><span class="t2"></span></h3>
+    <div class="title-border"></div>
+  </div>
+
+        <table id="tabb">
+            <tr>
+                  <td>
+                      <span class="textbox" >
+                          <input id="inputId" type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style=" height: 28px; line-height: 28px; width: 460px;"><br><br>
+
+                          <input id="abcd" type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style=" height: 28px; line-height: 28px; width: 460px;"><br><br>
+
+                          <input id="inputNam" type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style=" height: 28px; line-height: 28px; width: 460px;">
+                      </span>
+                  </td>
+            </tr>
+            <tr>
+                <td><br>
+                    <!--openDialog(是true否false单选,表单样式,tab样式（0,1）,jsonUrl1,jsonStyle1,jsonUrl2,jsonStyle2)-->
+                    <input type="button" class="btn btn-1" onclick="selDialog(true,0,0,'wd1','CallBack')" value="选择网点" style=" height: 35px;">
+                    <input type="button" class="btn btn-1" onclick="selDialog(false,0,1,'wd','CallBack')" value="选择网点" style=" height: 35px;">
+
+                    <input type="button" class="btn btn-3" onclick="selDialog(false,1,0,'xy1','CallBack')" value="选择县域" style=" height: 35px;">
+                    <input type="button" class="btn btn-3" onclick="selDialog(true,1,1,'xy','CallBack')" value="选择县域" style=" height: 35px;">
+
+                    <input type="button" class="btn btn-2" onclick="selDialog(true,2,0,'gys1','CallBack')" value="选择供应商" style=" height: 35px;">
+                    <input type="button" class="btn btn-2" onclick="selDialog(false,2,1,'gys','CallBack')" value="选择供应商" style=" height: 35px;">
+                </td>
+            </tr>
+        </table>
+
+  <p>selDialog(是否单选true/false,表单样式(0,1,2,3,4),tab样式（0两个,1一个）,类型(wd,xy,gys,wd1,xy1,gys1),['callback'](回调函数 可选)）</p>
+  <p>文档里需要function CallBack_openDialog(){}时要加上参数callback</p>
+
+  <img src="bd.gif">
+
+  <input id="cc" name="dept">
+
+<script language="JavaScript">
+//    $.ajax({
+//        type: "POST",
+//    //    url:'http://172.16.1.97:8992/share/getUrl.do',
+//        url:'http://testtag.tsh.cn/tag/listAllTag.do?appId=wm-bis&companyType=3',
+//    //    url: "http://172.16.1.97:8992/share/getAddress.do?cid="+ 0,
+//        cache: false,
+//        async: false,
+//        dataType: "jsonp",
+//        success: function(data) {
+//            console.log(data.data.id+"$$$$"+data.data.tagName);
+////            var data = $.merge([{
+////                id:  data.id,
+////                name: data.tagNo
+////            }], data);
+//            var data = data.data;
+//            $("#cc").combobox("loadData", data);
+//        }
+//    });
+//    // 下拉框选择控件，下拉框的内容是动态查询数据库信息
+//    $('#nam_openDialog').combobox({
+//        cache: false,
+//        editable: false,
+//        // panelHeight: 'auto',//自动高度适合
+//        valueField:'id',
+//        textField: 'tagName',
+//        onChange: function() {     }
+//    });
+</script>
+
+  <!--<script src="http://zinhi.com/dtkj/datagrid/index.js"></script>-->
+  <script src="../../../static/ued/1.0.0/window/index.js"></script>
+  <script>
+      function CallBack_openDialog(type){
+          console.log(type);
+          console.log(obj_openDialog);
+          console.log(sel_openDialog);
+      }
+//      sel_openDialog=[32206,32207,32208,32209];
+//      console.log(sel_openDialog);
+  </script>
+</body>
+</html>

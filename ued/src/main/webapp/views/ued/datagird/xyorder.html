@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>全国零售订单管理</title>
+		      <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/plugins/datagrid-cellediting.js"></script>
+		<style type="text/css">
+			.datagrid-btable td{
+				padding:10px 4px;
+
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<table id="tt"></table>
+		<script>
+			function myStatus(value) {
+				if (value == "0") {
+					return "上架";
+				} else if (value == "1") {
+					return "下架";
+				} else if (value == "2") {
+					return "运营下架";
+				} else if (value == "3") {
+					return "系统下架";
+				} else {
+					return "未知状态"
+				}
+			}
+			var cardview = $.extend({}, $.fn.datagrid.defaults.view, {
+				render: function(target, container, frozen) {
+						var opts = $.data(target, 'datagrid').options;
+						var rows = $.data(target, 'datagrid').data.rows;
+						var fields = $(target).datagrid('getColumnFields', frozen);
+						var t = [];
+						t.push('<table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0"><tbody >');
+						$.each(rows, function(i, v) {
+							var k=[];
+							t.push('<tr><td colspan="'+opts.columns[0].length+'" >'
+							      +'<input type="checkbox"/><span>'
+							      +v.receivingInfo.areaName+'</span>'
+							      +'<span>收货人：'+v.receivingInfo.areaContact+'</span>'
+							      +'<span>联系方式：'+v.receivingInfo.areaTel+'</span>'
+							      +'<span>收货地址：'+v.receivingInfo.areaAddress+'</span></div></td></tr>');
+							$.each(v.orderInfoList, function(w, f) {
+								var isRows = false;
+								$.each(f.goodsInfoList, function(j, h) {
+									var rows = '';
+									k.push('<tr>'+
+											'<td field="'+opts.columns[0][0].field+'" class="'+opts.columns[0][0].cellClass+'"><input type="checkbox"/><img src="'+h.goodsImg+'"/><span>'+h.goodsName+'</span>'+
+											'<span>颜色分类：'+h.skuMsg+'</span></td>'+
+											'<td field="'+opts.columns[0][1].field+'" class="'+opts.columns[0][1].cellClass+'">'+h.salesPrice.toFixed(2)+'</td>'+
+											'<td field="'+opts.columns[0][2].field+'" class="'+opts.columns[0][2].cellClass+'">'+h.number+'</td>'+
+											'<td field="'+opts.columns[0][3].field+'" class="'+opts.columns[0][3].cellClass+'">'+h.afterSaleStatus+'</td>'+
+											'<td field="'+opts.columns[0][4].field+'" class="'+opts.columns[0][4].cellClass+'">'+h.cargoStatus+'</td>'+
+											'<td field="'+opts.columns[0][5].field+'" class="'+opts.columns[0][5].cellClass+'">'+h.storage+'</td>');
+											
+								   if(!isRows){
+										k.push('<td field="'+opts.columns[0][6].field+'" class="'+opts.columns[0][6].cellClass+'" rowspan="'+f.goodsInfoList.length+'">'+f.shopName+'</td>'
+										       +'<td field="'+opts.columns[0][7].field+'" class="'+opts.columns[0][7].cellClass+'" rowspan="'+f.goodsInfoList.length+'">'+f.orderStatus+'</td>'
+										       +'<td field="'+opts.columns[0][8].field+'" class="'+opts.columns[0][8].cellClass+'" rowspan="'+f.goodsInfoList.length+'">'+f.orderAmount+'</td></tr>');
+									}
+								    isRows = true;
+								});
+							});
+							t.push(k.join(''));
+						});
+					
+						t.push('</tbody></table>');
+						$(container).html(t.join(''));
+					}
+			});
+			$(function() {
+				$('#tt').datagrid({
+					url: 'xyorder.json',
+					singleSelect: false, //是否单选
+					pagination: true, //分页控件
+					pageNumber: 1,
+					pageSize: 6,
+					pageList: [6, 3, 1],
+					autoRowHeight: true,
+					fit: true,
+					striped: false, //设置为true将交替显示行背景
+					fitColumns: true, //设置是否滚动条
+					nowrap: false,
+					remotesort: true,
+					checkOnSelect: true,
+					selectOnCheck: true,
+					method: "get", //请求数据的方法
+					loadMsg: '数据加载中,请稍候......',
+					idField: 'id',
+					view: cardview,
+					columns: [
+						[{
+							field: 'areaId',
+							width: 150,
+							title: '商品名称',
+							align: 'center'
+						}, {
+							field: 'salesPrice',
+							width: 80,
+							title: '单价',
+							align: 'center'
+						}, {
+							field: 'number',
+							width: 80,
+							title: '数量',
+							align: 'center',
+							editor: {
+								type: 'textbox',
+								options: {
+									required: true
+								}
+							}
+						}, {
+							field: 'afterSaleStatus',
+							title: '售后状态',
+							width: 80,
+							editor: {
+								type: 'textbox',
+								options: {
+									required: true
+								}
+							},
+							align: 'center',
+						}, {
+							field: 'cargoStatus',
+							title: '货物状态',
+							align: 'center',
+							formatter: myStatus,
+							editor: {
+								type: 'combobox',
+								options: {
+									data: [{
+										'value': '0',
+										'text': '上架'
+									}, {
+										'value': '1',
+										'text': '下架'
+									}, {
+										'value': '2',
+										'text': '运营下架'
+									}, {
+										'value': '3',
+										'text': '系统下架'
+									}],
+									valueField: "value",
+									textField: "text"
+								}
+							},
+						}, {
+							field: 'storage',
+							title: '仓储',
+							width: 40,
+							align: 'center',
+							formatter: function(value, row, index) {
+								var temp = "" +
+									'<a class="btn btn-l" href="javascript:;" onclick="view(' + index + ')"><i class="i-op i-op-view"></i>预览</a>';
+								if (row.status == 0) {
+									temp += '<a class="btn btn-l" href="javascript:;" onclick="edit(' + index + ')"><i class="i-op i-op-edit"></i>编辑</a>';
+									temp += '<a class="btn btn-l" href="javascript:;" onclick="down(' + index + ')"><i class="i-op i-op-down"></i>下架</a>';
+								} else {
+									temp += '<a class="btn btn-l" href="javascript:;" onclick="edit(' + index + ')"><i class="i-op i-op-edit"></i>编辑</a>';
+									temp += '<a class="btn btn-l" href="javascript:;" onclick="up(' + index + ')"><i class="i-op i-op-up"></i>上架</a>';
+								}
+								temp += '<a class="btn btn-l" href="javascript:;" onclick="del(' + index + ')"><i class="i-op i-op-del"></i>删除</a>';
+								return temp;
+							}
+						}, {
+							field: 'shopName',
+							width: 80,
+							title: '网点信息',
+							align: 'center'
+						}, {
+							field: 'orderStatus',
+							title: '订单状态',
+							align: 'center'
+						}, {
+							field: 'orderAmount',
+							title: '订单金额',
+							align: 'center'
+						}]
+					],
+					onLoadError: function() {
+						$.messager.alert('操作提示', '获取信息失败...请联系管理员!', 'error');
+					},
+					onLoadSuccess: function(data) {},
+					toolbar: '#tb',
+					onBeforeEdit: function(index, row) {
+						// console.log(index,row);
+					},
+					onEndEdit: function(index, row) {
+						// console.log(index,row);
+					},
+					onAfterEdit: function(index, row) {
+						//console.log(index,row);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

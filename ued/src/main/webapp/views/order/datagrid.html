@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>datagrid</title>
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <script src="../../static/order/1.0.0/datagrid-groupview.js?gversion=1.0.0"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$('#tt').datagrid({
+				title:'DataGrid - GroupView',
+				width:500,
+				height:250,
+				rownumbers:true,
+				remoteSort:false,
+				nowrap:false,
+				fit:true,
+				fitColumns:true,
+				data:data,
+				expandGroup:1,
+				columns:[[
+					{field:'productid',title:'Product ID',width:100,sortable:true},
+					{field:'listprice',title:'List Price',width:80,align:'right',sortable:true},
+					{field:'unitcost',title:'Unit Cost',width:80,align:'right',sortable:true},
+					{field:'attr1',title:'Attribute',width:150,sortable:true},
+					{field:'status',title:'Status',width:60,align:'center'}
+				]],
+				groupField:'productid',
+				view: groupview,
+				groupFormatter:function(value, rows){
+					return value + ' - ' + rows.length + ' Item(s)';
+			        }
+			});
+    	})
+    	var data={"total":4,"rows":[   
+			    {"name":"Name","value":"Bill Smith","group":"ID Settings","editor":"text"},   
+			    {"name":"Address","value":"","group":"ID Settings","editor":"text"},   
+			    {"name":"SSN","value":"123-456-7890","group":"ID Settings","editor":"text"},   
+			    {"name":"Email","value":"bill@gmail.com","group":"Marketing Settings","editor":{   
+			        "type":"validatebox",   
+			        "options":{   
+			            "validType":"email"  
+			        }   
+			    }}   
+			]}  
+
+    </script>
+</head>
+<body>
+	<table id="tt">	</table>
+	<!-- <table class="easyui-datagrid" style="width:100%;height:auto;border:1px solid #DEE3E6;" data-options="url:'datagrid_data1.json',fitColumns:true,singleSelect:true,method:'get',">
+	        <thead>
+	            <tr>
+	                <th data-options="field:'CommodityName ',width:180,align:'center'">商品名称</th>
+	                <th data-options="field:'price',width:80,align:'center'">销售价</th>
+	                <th data-options="field:'CommodityQuantity',width:80,align:'center'">商品数量</th>
+	                <th data-options="field:'customerService',width:80,align:'center'">售后</th>
+	                <th data-options="field:'buyerInformation',width:80,align:'center'">买家信息</th>
+	                <th data-options="field:'tradingStatus',width:80,align:'center'">交易状态</th>
+	                <th data-options="field:'orderAmount',width:80,align:'center'">订单金额</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        		<td colspan="8">订单号码：XS201512230012321 收货人：松阳联系方式：15024140426</td>
+	        	</tr>
+	        </tbody>
+	    </table> -->
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>供应商管理</title>
+	<link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css">
+   	<link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/default/icons.css">
+   	<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/order/1.0.0/orderManagement.js"></script>
+</head>
+<body style="margin:0 20px" >
+      	<div class="tsh-title tsh-title2">
+		   <h3>
+		        <div class="title-border"></div>
+		        <span class="t1">县域零售订单管理</span>
+		    </h3>
+		</div>
+	    <div id="tt" class="easyui-tabs"  fit="true"   tabHeight="40" style="width:100%;height:auto;padding-top:50px;padding-bottom:20px">
+	    	<div title="待发货（5）" style="padding:10px">
+	    		<div id="tb">
+		      			<form class="tsh-toolbar">
+							<label><span>商品名称：</span><input  class="easyui-textbox"
+							   data-options="validType:'length[3,20]'" style="width:170px; height:30px;" prompt="请输入商品名称、编码..."/></label>
+							<label><span>下单网点：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+							<label><span>订单编号：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+							<label><input class="easyui-combobox" prompt="售后服务" style="width:170px; height:30px;" id="afterSaleService"  /></label>
+							<label><span>成交时间：</span>
+							  <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+							  <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+							</label>
+							<label><a href="javascript:;" class="btn btn-1" id="J_Search"><i class="i-search"></i>搜索</a></label>
+							<label><a href="javascript:;" class="btn" id="J_Empty">清空</a></label>
+							<label><a href="javascript:;" class="btn"><i class="i-m-derive"></i>导出Excel</a></label>
+						</form>		
+						 <div style="margin:10px 0;">
+					    	<input type="checkbox" checked onchange="$('#dataGrid').datagrid({checkOnSelect:$(this).is(':checked')})">
+					    	<a href="javascript:;" class="btn btn-1" id="J_BulkShipment"style="margin:5px">批量发货</a>
+					    	<a href="javascript:;" class="btn" id="J_PrintOrder"style="margin:5px">打印订单</a>
+					    </div>	
+				</div>
+				<table id="dataGrid" class="easyui-datagrid"  ></table>	
+	    	</div>
+	    	<div title="已发货（2）" style="padding:10px">
+		       <div id="tb">
+	      			<form class="tsh-toolbar">
+						<label><span>商品名称：</span><input  class="easyui-textbox"
+						   data-options="validType:'length[3,20]'" style="width:170px; height:30px;" prompt="请输入商品名称、编码..."/></label>
+						<label><span>下单网点：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><span>订单编号：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><input class="easyui-combobox" prompt="售后服务" style="width:170px; height:30px;" id="afterSaleService"  /></label>
+						<label><span>成交时间：</span>
+						  <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+						  <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+						</label>
+						<label><a href="javascript:;" class="btn btn-1" id="J_Search"><i class="i-search"></i>搜索</a></label>
+						<label><a href="javascript:;" class="btn" id="J_Empty">清空</a></label>
+						<label><a href="javascript:;" class="btn"><i class="i-m-derive"></i>导出Excel</a></label>
+					</form>		
+			    </div>
+		    </div>
+		    <div title="退款中（0）" style="padding:10px">
+		        <div id="tb">
+	      			<form class="tsh-toolbar">
+						<label><span>商品名称：</span><input  class="easyui-textbox"
+						   data-options="validType:'length[3,20]'" style="width:170px; height:30px;" prompt="请输入商品名称、编码..."/></label>
+						<label><span>下单网点：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><span>订单编号：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><span>退款单号：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><input class="easyui-combobox" prompt="售后服务" style="width:170px; height:30px;" id="afterSaleService"  /></label>
+						<label><input class="easyui-combobox" prompt="售后服务" style="width:170px; height:30px;" id="afterSaleService"  /></label>
+						<label><span>成交时间：</span>
+						  <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+						  <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+						</label>
+						<label><a href="javascript:;" class="btn btn-1" id="J_Search"><i class="i-search"></i>搜索</a></label>
+						<label><a href="javascript:;" class="btn" id="J_Empty">清空</a></label>
+						<label><a href="javascript:;" class="btn"><i class="i-m-derive"></i>导出Excel</a></label>
+					</form>		
+					 <div style="margin:10px 0;">
+				    	<input type="checkbox" checked onchange="$('#dataGrid').datagrid({checkOnSelect:$(this).is(':checked')})">
+				    	<a href="javascript:;" class="btn btn-1" id="J_BulkShipment"style="margin:5px">批量发货</a>
+				    	<a href="javascript:;" class="btn" id="J_BatchReject"style="margin:5px">批量拒绝</a>
+				    	<a href="javascript:;" class="btn" id="J_BatchConfirmReceipt"style="margin:5px">批量确认收货</a>
+				    </div>	
+			    </div>
+		    </div>
+		    <div title="全部（7）" style="padding:10px">
+		        <div id="tb">
+		      		<form class="tsh-toolbar">
+						<label><span>商品名称：</span><input  class="easyui-textbox"
+						   data-options="validType:'length[3,20]'" style="width:170px; height:30px;" prompt="请输入商品名称、编码..."/></label>
+						<label><span>下单网点：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><span>订单编号：</span><input class="easyui-textbox"  data-options="" style="width:170px; height:30px;" prompt=""/></label>
+						<label><input class="easyui-combobox" prompt="退款状态" style="width:170px; height:30px;" id="refundStatus"  /></label>
+						<label><input class="easyui-combobox" prompt="订单状态" style="width:170px; height:30px;" id="orderStatus"  /></label>
+						<label><span>成交时间：</span>
+						  <input class="easyui-datebox"  id="startTime" value="${startTime}" validType="startTime['#endTime']" style="width:170px; height:30px;">-
+						  <input class="easyui-datebox"  id="endTime" value="${endTime}"  validType="endTime['#startTime']" style="width:170px; height:30px;">
+						</label>
+						<label><a href="javascript:;" class="btn btn-1" id="J_Search"><i class="i-search"></i>搜索</a></label>
+						<label><a href="javascript:;" class="btn" id="J_Empty">清空</a></label>
+						<label><a href="javascript:;" class="btn"><i class="i-m-derive"></i>导出Excel</a></label>
+					</form>		
+					 <div style="margin:10px 0;">
+					 	<input type="checkbox" checked onchange="$('#dataGrid').datagrid({checkOnSelect:$(this).is(':checked')})">
+					 	<a href="javascript:;" class="btn btn-1" id="J_BulkShipment"style="margin:5px">批量发货</a>
+					 	<a href="javascript:;" class="btn" id="J_PrintOrder"style="margin:5px">打印订单</a>
+					 </div>
+			    </div>
+			</div>
+		<!-- <table class="easyui-datagrid" style="height:auto" data-options="singleSelect:false,url:''">
+				        <thead>
+				            <tr>
+				                <th data-options="field:' ',width:180,align:'center'">商品名称</th>
+				                <th data-options="field:' ',width:80,align:'center'">销售价</th>
+				                <th data-options="field:' ',width:80,align:'center'">商品数量</th>
+				                <th data-options="field:' ',width:80,align:'center'">售后</th>
+				                <th data-options="field:' ',width:80,align:'center'">买家信息</th>
+				                <th data-options="field:' ',width:80,align:'center'">交易状态</th>
+				                <th data-options="field:' ',width:80,align:'center'">订单金额</th>
+				            </tr>
+				        </thead>
+				    </table>
+		 -->
+  		
+</body>
+</html>

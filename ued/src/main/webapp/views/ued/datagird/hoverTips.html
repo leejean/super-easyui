@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>treegrid上下移动</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+		<style>
+			code {
+				font-family: monospace;
+				color: #2d2d2d;
+				background: whitesmoke;
+				display: block;
+				padding: 10px;
+				border: 1px solid #ccc;
+				overflow: scroll;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<a href="">把鼠标移动过来试试</a>
+
+		<pre>
+			<code class="language-html" data-lang="html">
+	function tipsHover(o) {
+	
+	if (o.e.type == "mouseover") {
+		var top = o.this.offset().top + o.top,
+			left = o.this.offset().left + o.left,
+		    width = o.width,
+		    height =o.height,
+			div = $('&lt;div class=tips-hover&gt;' + o.divObj[0].outerHTML + '&lt;/div&gt;');
+			div.css({
+				position: 'absolute',
+				zIndex: 1000,
+				background:o.bgColor,
+				top: top + 'px',
+				left: left + 'px',
+		    	width:width+'px',
+		    	height:height+'px'
+			});
+			o.divObj.removeClass('dn');
+			div.insertAfter(o.this);
+		}
+		if (o.e.type == "mouseout") {
+			$(".tips-hover").remove();
+		}
+	}
+	
+	$(document).on('mouseover mouseout', 'a', function(e) {
+		tipsHover({
+			this: $(this),
+			e: e,
+			divObj: $('&lt;div style="width:100px;height:20px;"&gt;物流信息&lt;p&gt;到达北京&lt;/p&gt;&lt;/div&gt;'),
+			bgColor:'#fff',
+			width:200,
+			height:100,
+			top: 20,
+			left: 30
+		});
+	});
+			</code>
+		</pre>
+
+		<script>
+			$(function() {
+
+				function tipsHover(o) {
+
+					if (o.e.type == "mouseover") {
+						var top = o.this.offset().top + o.top,
+							left = o.this.offset().left + o.left,
+							width = o.width,
+							height = o.height,
+							div = $('<div class=tips-hover>' + o.divObj[0].outerHTML + '</div>');
+						div.css({
+							position: 'absolute',
+							zIndex: 1000,
+							background: o.bgColor,
+							top: top + 'px',
+							left: left + 'px',
+							width: width + 'px',
+							height: height + 'px'
+						});
+						o.divObj.removeClass('dn');
+						div.insertAfter(o.this);
+					}
+					if (o.e.type == "mouseout") {
+						$(".tips-hover").remove();
+					}
+				}
+
+				$(document).on('mouseover mouseout', 'a', function(e) {
+					tipsHover({
+						this: $(this),
+						e: e,
+						divObj: $('<div style="width:100px;height:20px;">物流信息<p>到达北京</p></div>'),
+						bgColor: '#fff',
+						width: 200,
+						height: 100,
+						top: 20,
+						left: 30
+					});
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

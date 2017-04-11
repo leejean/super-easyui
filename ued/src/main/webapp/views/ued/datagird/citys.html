@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>全国零售订单管理</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+		<!--<script src="../../../static/tsh/1.0.0/easyuiExt.js"></script>-->
+		<style>
+			/* 用来去除默认的图标 */
+			
+			body {
+				position: relative;
+			}
+			
+			.tree-icon {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tsh-title">
+			<h3><span class="t1">编辑销售区域</span><span class="t2"></span></h3>
+			<div class="title-border"></div>
+		</div>
+
+		<form class="tsh-toolbar">
+			<label><input class="easyui-textbox " data-options="validType:'length[1,20]'" style="width: 200px; height: 30px; display: none;" prompt="请输入"></label>
+			<label><a href="javascript:;" class="btn btn-1" id="showAll">展示所有</a></label>
+			<label><a href="javascript:;" class="btn btn-1" id="showCbx">展示选中</a></label>
+			<label><a href="javascript:;" class="btn btn-1" id="saveCbx">保存选中</a></label>
+		</form>
+
+		<div class="easyui-panel" style="position:absolute;padding:5px;width: 400px;height:630px">
+			<label><input id="searchId" class="easyui-textbox " data-options="validType:'length[1,20]'" style="width: 200px; height: 30px; display: none;" prompt="请输入城市名称"></label>
+			<ul id="tt"></ul>
+		</div>
+
+		<div class="easyui-panel" style="position:absolute;left:440px;padding:5px;width: 400px;height:630px">
+			<ul id="kk"></ul>
+		</div>
+
+		<script>
+			$(function() {
+				var treeId = 'tt', // 展示tree数据的容器id
+					opt = {}, // 解析数据所需参数对象
+					arr = [208, 479]; // 默认被选中，集合由level为2的数据id组成
+				var o_o = {
+					init: function() {
+						o_o.getData();
+						o_o.bindEvt();
+					},
+					bindEvt: function() {
+						// 监听搜索框架输入数据
+						$('#searchId').textbox('textbox').keyup(function(e) {
+							o_o.filterTxt(this.value);
+						});
+						$('#searchId').textbox('textbox').keydown(function(e) {
+							o_o.filterTxt(this.value);
+						});
+						// 展示所有
+						$("#showAll").on("click", function() {
+							$('#searchId').textbox('textbox')[0].value = '';
+							o_o.filterTxt('');
+						});
+						// 展示选中数据
+						$("#showCbx").on("click", function() {
+							o_o.getChecked();
+						});
+						// 保存选中
+						$("#saveCbx").on("click", function() {
+							o_o.saveData();
+						});
+					},
+					getData: function() {
+						$.ajax({
+							type: "get",
+							url: "tree_data.json",
+							dataType: "json",
+							success: function(data) {
+								$.each(data, function(i, n) {
+									if (n.level !== 2) {
+										// 节点是否关闭
+										n.state = "closed";
+									}
+									// 设置默认被选中合集
+									$.each(arr, function(i, v) {
+										if (n.id === v) {
+											// 节点是否被选中
+											n.checked = true;
+										}
+									});
+								});
+								o_o.initTree(data);
+							}
+						});
+					},
+					initTree: function(data) {
+						// 设置匹配参数
+						opt.idField = 'id';
+						opt.treeField = 'name';
+						opt.parentField = 'pid';
+						// 解析json数据
+						data = o_o.parseData(data, opt);
+						console.log(data);
+						// 初始化tree控件
+						$("#" + treeId).tree({
+							data: data,
+							idField: 'id',
+							treeField: 'name',
+							parentField: 'pid',
+							method: 'get',
+							animate: true,
+							checkbox: true,
+							cascadeCheck: true, // 启用级联检查,
+							onCheck: function() {
+								o_o.showCkData();
+							}
+						});
+					},
+					showCkData: function() {
+//						$.extend($.fn.tree.methods, {
+//							getCheckedExt: function(jq) { 
+//								var checked = $(jq).tree("getChecked");
+//								var checkbox2 = $(jq).find("span.tree-checkbox2").parent();
+//								$.each(checkbox2, function() {
+//									var node = $.extend({}, $.data(this, "tree-node"), {
+//										target: this
+//									});
+//									checked.push(node);
+//								});
+//								return checked;
+//							}
+//						});
+						//	['checked', 'indeterminate']
+						var xxList = $('#tt').tree('getChecked', ['checked', 'indeterminate']);
+						console.log(xxList);
+						o_o.reTreeData(xxList);
+						
+					},
+					reTreeData: function(dataList) {
+						var t = [];
+						var dataList = dataList;
+						$.each(dataList, function(i, v) {
+							if (v.level === 0) {
+								t.push(v);
+							}
+						});
+					   
+//						$.each(t, function(a, b) {
+//							var cArr = [];
+//							$.each(b.children, function(j, h) {
+//								var tArr = [];
+//								if (h.checkState !== "unchecked") {
+//									cArr.push(h);
+//								}
+//								if (h.children) {
+//									$.each(h.children, function(m, n) {
+//										if (n.checkState !== "unchecked") {
+//											tArr.push(n);
+//										}
+//									});
+//								}
+//								h.children = tArr;
+//							});
+//							b.children = cArr;
+//						});
+						
+						console.log(t);
+						
+						for(var i =0;i<t.length;i++){
+						  console.log(t[i])
+						   for(var j=0;j<t[i].children.length;j++){
+						      console.log(t[i].children.length)
+
+						   	  console.log(t[i].children[j].checkState)
+						      console.log(t[i].children[j])
+						      if(t[i].children[j].checkState=="unchecked"){
+						      	  
+						      }
+						      console.log(t[i].children.length)
+						   }
+						}
+						
+						dataList = t;
+						
+						$("#kk").tree({
+							data: dataList,
+							idField: 'id',
+							treeField: 'name',
+							parentField: 'pid',
+							method: 'get',
+							animate: true,
+							checkbox: false,
+							cascadeCheck: false // 启用级联检查
+						});
+					},
+					// 站内搜索、过滤匹配项
+					filterTxt: function(txt) {
+						$("#" + treeId + " li").hide().filter(":contains('" + txt.trim() + "')").show();
+					},
+					// 得到所有选中项
+					getChecked: function() {
+						$("#" + treeId + " li").hide().filter(function() {
+							return $(this).find('span').hasClass('tree-checkbox1');
+						}).show();
+					},
+					// 保存所有选中项数据
+					saveData: function() {
+						var nodes = $("#" + treeId).tree('getChecked'),
+							s = '',
+							w = '';
+						for (var i = 0; i < nodes.length; i++) {
+							if (s != '' || w != '') {
+								s += ',';
+								w += ',';
+							}
+							if (nodes[i].level === 2) {
+								s += nodes[i].text;
+								w += nodes[i].id;
+							}
+						}
+						alert(s);
+						alert(w);
+					},
+					// 解析tree数据，针对只有一层的json数据
+					parseData: function(data, opt) {
+						var idField, treeField, parentField;
+						if (opt.parentField) {
+							idField = opt.idField || 'id';
+							treeField = opt.treeField || 'text';
+							parentField = opt.parentField;
+							var i, l, treeData = [],
+								tmpMap = [];
+							for (i = 0, l = data.length; i < l; i++) {
+								tmpMap[data[i][idField]] = data[i];
+							}
+							for (i = 0, l = data.length; i < l; i++) {
+								if (tmpMap[data[i][parentField]] && data[i][idField] != data[i][parentField]) {
+									if (!tmpMap[data[i][parentField]]['children'])
+										tmpMap[data[i][parentField]]['children'] = [];
+									data[i]['text'] = data[i][treeField];
+									tmpMap[data[i][parentField]]['children'].push(data[i]);
+								} else {
+									data[i]['text'] = data[i][treeField];
+									treeData.push(data[i]);
+								}
+							}
+							return treeData;
+						}
+						return data;
+					}
+				};
+				o_o.init();
+			});
+		</script>
+	</body>
+
+</html>

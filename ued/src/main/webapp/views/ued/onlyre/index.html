@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>仅退款</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    <style type="text/css">
+    	.cont{margin-top: 55px;}
+    	.cont td{ padding: 10px 0;  vertical-align: top;}
+      	#tsh-title .btn-4{position: absolute;top:-5px;}
+      	.tsh-process{padding-top: 25px;}
+
+        .bor{ border:1px solid #DEE3E5; box-sizing: border-box;}
+        .borb{ border-bottom:1px solid #DEE3E5; overflow: hidden;}
+        .w320{ width: 320px;}
+        .fl{float: left}
+        .fr{float: right;}
+        .pl16{ padding-left: 16px; padding-right: 16px; }
+        .plb16{padding-bottom: 16px;}
+        dt,dd,dl{ line-height:40px;  box-sizing: border-box; margin: 0px;}
+        .lr dt{text-align: right; width: 80px; padding-left: 16px;  float: left;}
+        .borb li{ padding: 16px; list-style: none; overflow: hidden; }
+        .msgdate{ margin-right: 16px; }
+        dd{text-align: left; width: 230px; float: right;}
+        .ml20{margin-left: 20px; }
+        .w100{width: 100%; vertical-align: top}
+        .msgcon{ width: 100%;}
+        textarea{ width: 100%; height: 60px; margin-top: 16px; margin-bottom: 16px; }
+        .cancerimg{width: 60px; height: 60px; border: 1px solid #dee3e6;}
+        .cancernam{ float: right; line-height: 17px;  width: 210px;}
+        .tit { line-height: 45px; background: #f2f7fd; font-size: 13px; font-weight:bold;}
+
+    </style>
+</head>
+<body style="margin:0 20px;">
+  <div id="tsh-title">
+    <h3><span class="t1">仅退款</span><span class="t2"></span></h3>
+    <div class="title-border"></div>
+  </div>
+
+  <div class="tsh-process" data-num="4" data-prompt="填写网点信息,上传网点资料,填写网点物流信息,确认信息" data-start="3" data-colorKeep="false"></div>
+
+<div  method="post" class="cont">
+<table class="w100">
+    <tr>
+        <!--------------------页面左边beging---------------------->
+        <td width="320">
+      <div class="bor fl w320">
+          <div class="borb pl16 tit">仅退款申请</div>
+          <div class="borb ">
+                  <li>
+                      <div class="cancerimg fl"></div>
+                      <div class="cancernam tex-blod">如果您逾期未响应，视作同意买家申请，系统将自动退款给买家。</div>
+                      <div class="cancernam text-gray">颜色分类：白色</div>
+                  </li>
+          </div>
+
+          <div class="borb ">
+              <dl class="lr">
+                  <dt>买家信息：</dt><dd>南山云谷超市 </dd>
+                  <dt>买家电话：</dt><dd>18564251230</dd>
+                  <dt>订单编号：</dt><dd>XS201245121120123   </dd>
+                  <dt>价       格：</dt><dd><span class="text-red">300.00</span> 元 * 1（数量） </dd>
+                  <dt>订单状态：</dt><dd>已发货 </dd>
+              </dl>
+
+          </div>
+          <div class="">
+              <dl class="lr">
+                  <dt>退款编号：</dt><dd>TK201512301245856  </dd>
+                  <dt>退款金额：</dt><dd><span class="text-red">300.00</span> 元          </dd>
+                  <dt>退款原因：</dt><dd>未按约定时间发货   </dd>
+                  <dt>退款状态：</dt><dd>待确认             </dd>
+                  <dt>要      求：</dt><dd>仅退款           </dd>
+                  <dt>说      明：</dt><dd>请尽快退款       </dd>
+              </dl>
+          </div>
+        </div>
+    </td>     <td>
+
+        <div class="bor ml20 plb16">
+            <!--------------------页面左边end---------------------->
+            <div class="borb pl16 "><dl class="tit lr"> 请处理退款申请 </dl></div>
+
+
+
+
+            <form  method="post" class="form"  style="display: block;">
+                <table cellpadding="5">
+                    <tbody>
+                    <tr>
+                        <td style="text-align:left">
+                            <div class="borb pl16 ">
+                                <p>如果未发货，请点击同意退款给买家。</p>
+                                <p>如果实际已发货，请主动与买家联系。</p>
+                                <p>如果您逾期未响应，视作同意买家申请，系统将自动退款给买家。</p>
+                                <p>
+                                    <a class='btn btn-1' href='javascript:;' >提交退货发回信息</a>
+                                    <a href="javascript:void(0)" class="btn btn-1 next" data-num="1">下一步</a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="5" style="display: block;">
+                    <tbody>
+                    <tr>
+                        <td style="text-align:right"><span class="text-red">*</span> 用户邮箱：</td>
+                        <td><input class="easyui-textbox" type="text" style="width:270px; height:30px;" name="email"
+                                   data-options="validateOnCreate:false,required:true,validType:['email','length[0,20]'],err:err"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><span class="text-red">*</span> 电话号码：</td>
+                        <td><input class="easyui-textbox" type="text" style="width:270px; height:30px;"
+                                   name="tel" data-options="required:true,validType:'tel',err:err"></td>
+                    </tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <a href="javascript:void(0)" class="btn btn-1 next" data-num="2">下一步</a>
+                        <a href="javascript:void(0)" class="btn prev" data-num="2">上一步</a>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="5" style="display: none;">
+                    <tbody>
+                    <tr>
+                        <td style="text-align:right"><span class="text-red">*</span> 手机号码：</td>
+                        <td><input class="easyui-textbox" type="text" style="width:270px; height:30px;"
+                                   name="mobile" data-options="required:true,validType:'mobile',err:err"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><span class="text-red">*</span> 身份证号码：</td>
+                        <td><input class="easyui-textbox" type="text" style="width:270px; height:30px;"
+                                   name="idcard" data-options="required:true,validType:'idcard',err:err"></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <a href="javascript:void(0)" class="btn btn-1 next" data-num="3">下一步</a>
+                            <a href="javascript:void(0)" class="btn prev" data-num="3">上一步</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="5" style="display: none;">
+                    <tbody>
+                    <tr>
+                        <td style="text-align:right">密码：</td>
+                        <td><input class="easyui-textbox"  type="password"  name="password" validType="length[4,32]"
+                                   data-options="required:true,err:err" style="width:270px;height:30px" missingMessage="请填写新密码"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">确认密码：</td>
+                        <td><input class="easyui-textbox" name="repassword"  validType="equalTo['#ff input[name=password]']"
+                                   missingMessage="请再次填写新密码" type="password" data-options="required:true,err:err" style="width:270px;height:30px"></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <a href="javascript:void(0)" class="btn btn-1 submit">确认信息并提交</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
+
+
+
+            <!--------------页面右边不动部分beging---------------------->
+            <div class="borb pl16 "><dl class="tit lr">  留言板  </dl></div>
+            <div class=" pl16 ">
+                <textarea aria-multiline="true" class="textbox-text validatebox-text textbox-prompt" placeholder="请输入" maxlength="1000"></textarea>
+
+                <img alt="暂无图片" id="thumbnail1" width="70" height="70" src="../../../static/tsh/1.0.0/themes/default/images/nopic.png" style="float:left;display:inline-block;margin-right:6px">
+                <div id="filePicker1" class="filePicker webuploader-container" style="padding-top:20px; line-height:32px; float:left;padding-right:6px"><div class="webuploader-pick">上传图片</div><div id="rt_rt_1ajjvgmiq27ae6a4dmf6rf3k1" style="position: absolute; top: 20px; left: 0px; width: 80px; height: 32px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" accept="image/*"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div>
+                <div style=" line-height:70px;width:700px;">(建议图片尺寸600*600，最多5张，单张不超过5M，支持GIF，JPG，JPEG，PNG，BMP格式。)</div>
+                <p>
+                    <a class='btn btn-1' href='javascript:;' >发表留言</a>
+                </p>
+                <div class="borb">
+                    <dl>
+                        <dt><span class="fl">卖家留言：</span><span class="fr">2016-04-26 20:50:53</span></dt>
+                        <dd class="msgcon">3天以后发货</dd>
+                    </dl>
+                </div>
+                <div class="borb">
+                    <dl>
+                        <dt><span class="fl">卖家留言：</span><span class="fr">2016-04-26 20:50:53</span></dt>
+                        <dd class="msgcon">发起了仅退款申请，货物状态：未发货， 原因：未按约定时间发货， 金额： 300.00 元. </dd>
+                    </dl>
+                </div>
+            </div>
+                <!--------------页面右边不动部分End---------------------->
+        </div>
+    </td></tr></table>
+
+</div>
+  <script src="../../../static/ued/1.0.0/process_onlyre/index.js?gversion=1.0.0"></script>
+</body>
+</html>

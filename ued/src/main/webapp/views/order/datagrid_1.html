@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>datagrid</title>
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+    <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+    
+    <script type="text/javascript">
+    	$(function(){
+    		$('#dg').datagrid({
+				url: 'datagrid_data1.json',	
+				method: "get",
+				singleSelect: false, //是否单选
+				pagination: true, //分页控件
+				pageNumber: 1,
+				pageSize: 6,
+				pageList: [6, 3, 1],
+				autoRowHeight: true,
+				fit: true,
+				striped: false, //设置为true将交替显示行背景
+				fitColumns: true, //设置是否滚动条
+				nowrap: false,
+				remotesort: true,
+				checkOnSelect: true,
+				selectOnCheck: true,
+				method: "get", //请求数据的方法
+				loadMsg: '数据加载中,请稍候......',
+				idField: 'id',
+				onLoadSuccess: onLoadSuccess,
+				// view: cardview,
+				columns: [[
+							{ field: 'ck', checkbox: true },
+			            	{
+			                    field: 'CommodityName',
+			                    title: '商品名称',
+			                    align: 'center',
+			                    width:150,
+			                    colSpan:6,
+			                    /*formatter: function(v, r, index) {
+			                        var productid = (pageopt.pageimg pageNumber - 1) * pageopt.pageSize + index + 1;
+			                        return productid;
+			                    }*/
+			                },
+			                { field: 'price', title: '销售价', width: 200, align: 'center', formatter: mypicture },
+			                { field: 'CommodityQuantity', title: '商品数量', width: 200, align: 'center' ,editor:{type:'textbox',options:{required:true}}},
+			                {field: 'customerService',title: '售后',width: 200,editor:{type:'textbox',options:{required:true}},align: 'center',    },
+			                {
+			                    field: 'buyerInformation',
+			                    title: '买家信息', 
+			                    width: 200,
+			                    align: 'center',
+			                    formatter: myStatus,
+			                    editor:{type:'combobox',options:{ data: [{
+									        'value': '0',
+									        'text': '上架'
+									    }, {
+									        'value': '1',
+									        'text': '下架'
+									    }, {
+									        'value': '2',
+									        'text': '运营下架'
+									    }, {
+									        'value': '3',
+									        'text': '系统下架'
+									    }], 
+			    					valueField: "value", 
+			    					textField: "text"} 
+			    				},
+			                },
+			                {field:'tradingStatus',title:'交易状态',width:200,align:'center'},
+			                {
+			                    field: 'orderAmount',
+			                    title: '订单金额',
+			                    width: 200,
+			                    align: 'center',}
+				]],	
+														
+			});
+		});
+		function onLoadSuccess(data){
+			var merges = [{
+				index: 0,
+				rowspan:4
+			}];
+			for(var i=0; i<merges.length; i++){
+				$(this).datagrid('mergeCells',{
+					index: merges[i].index,
+					field: 'buyerInformation',
+					field: 'tradingStatus',
+					rowspan: merges[i].rowspan
+				});
+			}
+		}
+		//修改单元格一的样式
+		function mypicture(value, row, index) {
+		var temp = "";
+		// if(value){
+		temp = "<div style='position:relative'><img src='https://img.alicdn.com/bao/uploaded/i2/862068270/TB2dduSkVXXXXbfXXXXXXXXXXXX_!!862068270.jpg_80x80.jpg' style='display:inline-block;vertical-align: top;max-width:80px;heightmax-height:80px' />";
+		// }
+		return temp;
+		}
+		
+		function edit(id) {
+		    $.messager.alert({
+		        title: '成功提示',
+		        width: 400,
+		        msg: '<div class="content">成功提示！</div>',
+		        ok: '<i class="i-ok"></i> 确定',
+		        icon: 'info'
+		    });
+		}
+		
+		function up(id) {
+		    $.messager.alert({
+		        title: '错误提示',
+		        width: 400,
+		        msg: '<div class="content">错误提示文字</div>',
+		        ok: '<i class="i-ok"></i> 确定',
+		        icon: 'error'
+		    });
+		}
+		
+		function view(id) {
+		    $.messager.alert({
+		        title: '警告提示',
+		        width: 400,
+		        msg: '<div class="content">警告文字</div>',
+		        ok: '<i class="i-ok"></i> 确定',
+		        icon: 'warning'
+		    });
+		}
+		
+		function del(id) {
+		    $.messager.confirm({
+		        width: 400,
+		        title: '删除提示',
+		        msg: '<div class="content">你确认要删除这条记录吗?</div>',
+		        ok: '<i class="i-ok"></i> 确定',
+		        cancel: '<i class="i-close"></i> 取消',
+		        fn: function(r) {
+		            if (r) {
+		
+		                $.messager.alert({
+		                    title: '成功提示',
+		                    width: 400,
+		                    msg: '完成',
+		                    ok: '<i class="i-ok"></i> 确定',
+		                    icon: 'info'
+		                });
+		            }
+		        }
+		    });
+		}
+		function myStatus(value){
+		    if(value=="0"){
+		        return "上架";
+		    }else if(value=="1"){
+		        return "下架";
+		    }else if(value=="2"){
+		        return "运营下架";
+		    }else if(value=="3"){
+		        return "系统下架";
+		    }else{
+		        return "未知状态"
+		    }
+		}
+    </script>
+</head>
+<body>
+	<table id="dg">	</table>
+	<!-- <table class="easyui-datagrid" style="width:100%;height:auto;border:1px solid #DEE3E6;" data-options="url:'datagrid_data1.json',fitColumns:true,singleSelect:true,method:'get',">
+	        <thead>
+	            <tr>
+	                <th data-options="field:'CommodityName ',width:180,align:'center'">商品名称</th>
+	                <th data-options="field:'price',width:80,align:'center'">销售价</th>
+	                <th data-options="field:'CommodityQuantity',width:80,align:'center'">商品数量</th>
+	                <th data-options="field:'customerService',width:80,align:'center'">售后</th>
+	                <th data-options="field:'buyerInformation',width:80,align:'center'">买家信息</th>
+	                <th data-options="field:'tradingStatus',width:80,align:'center'">交易状态</th>
+	                <th data-options="field:'orderAmount',width:80,align:'center'">订单金额</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        		<td colspan="8">订单号码：XS201512230012321 收货人：松阳联系方式：15024140426</td>
+	        	</tr>
+	        </tbody>
+	    </table> -->
+</body>
+</html>

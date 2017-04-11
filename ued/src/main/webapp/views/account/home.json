@@ -1,0 +1,13 @@
+[
+  
+  {
+    "icon":"3","menuName":"账户管理",
+    "childNode":[
+      { "menuPath":"account-center.html","menuName":"账户中心","openType":""},
+      { "menuPath":"","menuName":"惠账户","openType":""},
+      { "menuPath":"","menuName":"惠金库","openType":""},
+      { "menuPath":"","menuName":"优惠券","openType":""},
+      { "menuPath":"","menuName":"结算账户","openType":""}
+    ]
+  }
+]

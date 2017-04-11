@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>个性化弹框选择控件</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+
+		<style>
+			code {
+				font-family: monospace;
+				color: #2d2d2d;
+				background: whitesmoke;
+				display: block;
+				padding: 10px;
+				border: 1px solid #ccc;
+				overflow: scroll;
+			}
+			/** 组件样式 **/
+			
+			.window-saleAreaList .messager-body {
+				padding: 10px;
+				text-align: center
+			}
+			
+			.window-saleAreaList .messager-icon {
+				display: none
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tsh-title">
+			<h3><span class="t1">个性化弹框控件</span><span class="t2"></span></h3>
+			<div class="title-border"></div>
+		</div>
+
+		<div style="margin:20px 0;">
+			<a href="javascript:void(0)" class="easyui-linkbutton" id="open">Open</a>
+		</div>
+
+		<pre>
+	        <code>
+	/** 组件样式 **/
+	.window-saleAreaList .messager-body {
+		padding: 10px;
+		text-align: center
+	}
+	
+	.window-saleAreaList .messager-icon {
+		display: none
+	}
+	        	
+	        	
+	// 需要配置的参数
+	var o = {};
+	o.title1 = '选择标签'; // 大标题名称
+	o.height = 500; // 弹出框高度
+	o.isFilter = true; // 是否显示过滤组件
+	o.title2 = '标签名称'; // 过滤组件描述信息
+	o.url = 'http://tag.tsh.com:8015/tag/listAllTag.do?companyType=2&appId=bis'; // 请求数据接口
+	o.type = 'post'; // 接口请求类型
+	o.dataType = 'jsonp'; // 数据返回类型
+	o.data = ''; // 返回的数据对象
+	o.id = 'id'; // 绑定的ID
+	o.name = 'tagName'; // 绑定的描述信息
+	o.chked = ['15']; // 默认被选中的数组集合
+	
+	// 获得所有被选中项集合
+	function getchecked(list) {
+		console.log(list);
+	}
+	// 绑定事件
+	$("#open").on('click', function() {
+		// 初始化数据
+	    changeTags.init(o,getchecked);
+	})
+	        </code>
+        </pre>
+		<script src="changTags.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				var o = {};
+				// 需要配置的参数
+				o.title1 = '选择标签'; // 大标题名称
+				o.height = 500; // 弹出框高度
+				o.isFilter = true; // 是否显示过滤组件
+				o.title2 = '标签名称'; // 过滤组件描述信息
+				o.url = 'http://tag.tsh.com:8015/tag/listAllTag.do?companyType=2&appId=bis'; // 请求数据接口
+				o.type = 'post'; // 接口请求类型
+				o.dataType = 'jsonp'; // 数据返回类型
+				o.data = ''; // 返回的数据对象
+				o.id = 'id'; // 绑定的ID
+				o.name = 'tagName'; // 绑定的描述信息
+				o.chked = ['15']; // 默认被选中的数组集合
+				// 获得所有被选中项集合
+				function getchecked(list) {
+					console.log(list);
+				}
+				// 绑定事件
+				$("#open").on('click', function() {
+					// 初始化数据
+					changeTags.init(o, getchecked);
+				})
+			});
+		</script>
+	</body>
+
+</html>

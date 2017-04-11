@@ -1,0 +1,133 @@
+<html >
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+  <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+  <link rel="stylesheet" type="text/css" href="../../static/account/1.0.0/css/account.css">
+  <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+  <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+  <script src="../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+  <style type="text/css">
+  	/*.window .messager-body .messager-question.messager-none{
+  		background-image: none;
+  	}*/
+  </style>
+</head>
+
+<body style="margin:0 20px;">
+  <div id="tsh-title">
+    <h3><span class="t1">账户信息</span><span class="t2"></span>  </h3>
+    <div class="title-border"></div>
+  </div>
+  
+  <div class="account-information" style="margin-top: 25px;">
+  	<ul class="account-information-top">
+  		<li class="account-name">
+  			<div class="account-message"><img class="account-photo" src="../../static/account/1.0.0/images/head-portraits.png"/><div class="account-message-right"><p class="account-message-name">zhangxiaoming</p><p class="account-message-vip">会员账户</p></div></div>
+  		</li>
+  		<li class="account-balance">
+  			<div class="account-icon">
+  				<i class="i-account i-account-1"></i><div class="account-icon-right"><p class="account-icon-text">惠账户余额</p><p class="account-icon-pri">￥296.00</p></div>
+  				<a class='btn btn-1' href='javascript:;' >充值</a>
+  				<a class='btn' href='javascript:;' style="margin-left: 10px;">提现</a>
+  			</div>
+  		</li>
+  		<li class="account-vault">
+  			<div class="account-icon">
+  				<i class="i-account i-account-5"></i><div class="account-icon-right"><p class="account-icon-text">惠金库</p><p class="account-icon-pri">￥296.00</p></div>
+  				<a class='btn' href='javascript:;'>提现</a>
+  			</div>	
+  		</li>
+  	</ul>
+  	<div class="account-information-bottom">
+  		<div class="account-icon"><i class="i-account i-account-3"></i><div class="account-icon-right"><p class="account-icon-text">优惠券</p><p class="account-icon-pri">￥296.00</p></div></div>
+		<div class="account-icon"><i class="i-account i-account-2"></i><div class="account-icon-right"><p class="account-icon-text">待结算金额</p><p class="account-icon-pri">￥296.00</p></div></div>
+  		<div class="account-icon"><i class="i-account i-account-4"></i><div class="account-icon-right"><p class="account-icon-text">银行卡</p><p class="account-icon-num">3&nbsp;张</p></div></div>
+  	</div>
+  </div>
+  <div id="tsh-title" style="margin: 25px 0;">
+    <h3><span class="t1">账户安全</span><span class="t2"></span>  </h3>
+    <div class="title-border"></div>
+  </div>
+  <div class="account-safe">
+  	<div class="account-safe-left">
+  		<i class="i-judge i-judge-1"></i><span class="pay-psw">支付密码</span><span class="pay-psw-state">已设置</span>
+  		<img src="../../static/account/1.0.0/images/arrow_03.png" class="arrow"/>
+  	</div>
+  	<div class="account-safe-right">
+  		<a class='btn btn-1' href='javascript:;' style="margin-left: 20px;" onclick="alert()">修改</a>
+  		<a class='btn' href='password-back.html' style="margin-left: 10px;">忘记密码</a>
+  	</div>
+  </div>
+  <script>
+	//交互提示
+  function alert(){
+  	var msgDom='<form id="ff" method="post" class="form" style="position:relative"><table cellpadding="5" style="height:90px">';
+  			msgDom+='<tr><td style="text-align:right">新密码：</td><td>';
+  			msgDom+='<input class="easyui-textbox" type="password" name="password" validType="length[6,18]" data-options="validateOnCreate:false,required:true" style="width:227px;height:30px" missingMessage="请填写新密码" prompt="6-18位数字，不支持空格"></td>';
+  			msgDom+='</tr><tr><td style="text-align:right">再次输入密码：</td><td>'
+  			msgDom+='<input class="easyui-textbox" name="repassword" validType="equalTo['+"'#ff input[name=password]']"+'" missingMessage="请再次输入密码" type="password"';
+  			msgDom+='data-options="validateOnCreate:false,required:true" style="width:227px;height:30px" prompt="6-18位数字，不支持空格"></td></tr>';
+  			msgDom+='</table></from>';
+    $.messager.confirm({
+      title:'设置密码',
+      msg:msgDom,
+      ok:'<i class="i-ok"></i> 确定',
+      cancel:'<i class="i-close"></i> 取消'
+//    fn:function(r){
+//    	if (r){
+//    		console.log(r);
+//        $.messager.alert({
+//          title:'成功提示',
+//          width:400,
+//          msg:'<div class="content">设置密码成功</div>',
+//          ok:'<i class="i-ok"></i> 确定',
+//          icon:'in'
+//        });
+//    	}
+//    }
+    });
+    //样式的一些修改
+    $(".messager-icon.messager-question").hide();
+    $(".l-btn-small").css({
+    	"marginTop":"10px"
+    });
+    $(".window .messager-body").css({
+    	"width":"auto",
+    	"padding":"46px 20px 0 20px",
+    	"height":"130px"
+    })
+    $(".window-shadow").css({
+    	"height":"auto"
+    })
+    $(".l-btn.l-btn-small").hide();
+    var clickDom='<a href="javascript:void(0)" class="btn btn-1" onclick="submitForm()" style="margin-top: 10px;margin-right: 15px;"><i class="i-ok"></i>确定</a><a href="javascript:void(0)" class="btn" onclick="clearForm()"><i class="i-close"></i>取消</a>';
+  	$(".dialog-button.messager-button").append(clickDom);
+  }
+
+  $("body").on("click",".submit",function(){
+  	submitForm();
+  	//console.log("hahaha");
+  })
+  function submitForm() {
+    $('#ff').form('submit', {
+        url: "",
+        onSubmit: function(param) {
+            return $(this).form('enableValidation').form('validate');
+        },
+        success: function(data) {
+            if (data.success) {
+                alert(data.message)
+            }
+        }
+    });
+	}
+  function clearForm() {
+    $('#ff').form('clear');
+	}
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>淘实惠管理系统</title>
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../static/tsh/1.0.0/themes/default/icons.css">
+    <link rel="stylesheet" type="text/css" href="../../static/home/1.0.0/home.css">
+    <script src="../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+    <script src="../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+    <script src="../../static/goods/1.0.0/home.js"></script>
+</head>
+<body>
+<div id="container">
+  <!-- 侧边栏开始 -->
+  <div id="sidebar">
+     <div id="logo">
+     </div>
+     <div id="userInfo">
+       <table>
+          <tr>
+              <td class="td1"><img src="../../static/home/1.0.0/images/guest.png"></td>
+              <td  class="td2"><span id="userName">淘实惠</span>
+                <a class="logout J_Logout">退出</a>
+              </td>
+          </tr>
+       </table>
+     </div>
+     <!-- 菜单开始 -->
+     <div id="menu" class="addTab">
+       <!-- 平台菜单开始 -->
+       <div class="sysMenu">
+          <!-- 一级菜单开始 -->
+          <ul>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i>关于<i class="i-arrow-down"></i></div>
+                <!-- 加了submenu就会收缩 -->
+                <ul class="submenu">
+                  <li><a id="2" src="about/guide.html">使用指南</a></li>
+                  <li><a id="3" src="about/update.html">更新日志</a></li>
+                  <li><a id="4" src="about/fq.html">常见问题</a></li>
+                </ul>
+              </li>
+          </ul>
+          <!-- 一级菜单结束 -->
+       </div>
+       <!-- 平台菜单结束 -->
+
+       <!-- 平台菜单开始 -->
+       <div class="sysMenu">
+          <span class="sysName">组件</span>
+          <!-- 一级菜单开始 -->
+          <ul>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a>基本</a><i class="i-arrow-down"></i></div>
+                <ul>
+                  <li><a id="6" src="base/font.html">字体</a></li>
+                  <li><a src="base/layout.html">排版</a></li>
+                  <li><a src="base/color.html">色彩</a></li>
+                  <li><a src="base/btn.html">按钮</a></li>
+                  <li><a src="base/icons.html">图标</a></li>
+                  <li><a src="base/index.html">布局</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a>导航</a><i class="i-arrow-down"></i></i>
+                </div>
+                <!-- 二级菜单开始 -->
+                  <ul>
+                    <li><a src="http://www.zhc365.com">Menu菜单</a></li>
+                    <li><a src="http://www.jiadilong.com">Breadcrum面包屑</a></li>
+                  </ul>
+                    <!-- 二级菜单结束 -->
+              </li>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a  src="link/index.html">表单</a><i class="i-arrow-down"></i></div>
+                <ul>
+                  <li><a src="http://www.baidu.com">表单验证</a></li>
+                </ul>
+              </li>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a src="link/index.html">展示</a><i class="i-arrow-down"></i></div>
+                <ul>
+                  <li><a >弹窗</a></li>
+                </ul>
+              </li>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a  src="table/index.html">表格</a><i class="i-arrow-down"></i></div>
+              </li>
+
+          </ul>
+          <!-- 一级菜单结束 -->
+       </div>
+       <!-- 平台菜单结束 -->
+       <!-- 平台菜单开始 -->
+       <div class="sysMenu">
+          <span class="sysName">典型场景</span>
+          <!-- 一级菜单开始 -->
+          <ul>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a>商品</a><i class="i-arrow-down"></i></div>
+                <ul>
+                  <li><a  src="goods/goods_item.html">商品列表</a></li>
+                </ul>
+              </li>
+          </ul>
+          <!-- 一级菜单结束 -->
+       </div>
+       <!-- 平台菜单结束 -->
+       <!-- 平台菜单开始 -->
+       <div class="sysMenu">
+          <span class="sysName">前端开发指南</span>
+          <!-- 一级菜单开始 -->
+          <ul>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a  src="about/index.html">说明</a><i class="i-arrow-down"></i></div>
+              </li>
+              <li>
+                <div class="link"><i class="i-b i-setting"></i><a  src="link/index.html">前端开发规范</a><i class="i-arrow-down"></i></div>
+                <!-- 二级菜单开始 -->
+                  <ul>
+                    <li><a href="#" target="_blank">html开发规范</a></li>
+                    <li><a src="#">css开发规范</a></li>
+                    <li><a src="link/index.html">js开发规范</a></li>
+                    <li><a src="link/index.html">jquery开发规范</a></li>
+                  </ul>
+                    <!-- 二级菜单结束 -->
+              </li>
+          </ul>
+          <!-- 一级菜单结束 -->
+       </div>
+       <!-- 平台菜单结束 -->
+     </div>
+     <!-- 菜单结束 -->
+  </div>
+  <!-- 侧边栏结束 -->
+  <!-- 主体开始 -->
+ <div id="wrapper">
+     <div id="main">
+       <div id="tabs" class="easyui-tabs" fit="true" border="false">
+           <div title="首页">
+               <div style="margin:10px; font-size:18px; height:100%;overflow:auto;">
+                  欢迎！
+               </div>
+           </div>
+       </div>
+     </div>
+ </div>
+ <!-- 主体结束 -->
+</div>
+  <!-- 子菜单开始 -->
+  <div id="menuchild" class="addTab">
+    <div class="menuArrow"></div>
+    <ul>
+    </ul>
+  </div>
+  <!-- 子菜单结束 -->
+
+    <div id="mm" class="easyui-menu cs-tab-menu">
+        <div id="mm-tabupdate">刷新</div>
+        <div class="menu-sep"></div>
+        <div id="mm-tabclose">关闭</div>
+        <div id="mm-tabcloseother">关闭其他</div>
+        <div id="mm-tabcloseall">关闭全部</div>
+    </div>
+</body>
+</html>

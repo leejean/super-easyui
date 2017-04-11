@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>全国零售订单管理</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+		
+		<style>
+		   .cont-tree{
+		   	  list-style-type: none;
+			  margin: 0;
+			  padding: 0;
+			  position: absolute;
+		      top: 36px;
+		      width: 98%;
+		   } 
+		    .cont-tree li ul{
+		   	  list-style-type: none;
+			  margin: 0;
+			  padding-left: 8px;
+		   }
+		   .cont-tree div{
+		   	  cursor: pointer;
+		   	  padding-left: 4px;
+		   }
+		   .cont-tree div:hover{
+		   	  background: #F1F1F1;
+		   	  border: 1px solid #02c1b3;
+		   }
+		   .cont-tree li{
+		   	  line-height: 40px;
+		   }
+		   .item-chk {
+		   	  background: lightyellow;
+		   	  color: green;
+		   }
+		   .dn {
+		   	  display: none;
+		   }
+		   .one-level{
+		   	  
+		   }
+		   .two-level{
+		   	  padding-left: 4px;
+		   }
+		   .thr-level{
+		   	  padding-left: 4px;
+		   }
+		</style>
+	</head>
+
+	<body>
+		<div id="tsh-title">
+			<h3><span class="t1">编辑销售区域</span><span class="t2"></span></h3>
+			<div class="title-border"></div>
+		</div>
+
+		<form class="tsh-toolbar">
+			<label><input class="easyui-textbox " data-options="validType:'length[1,20]'" style="width: 200px; height: 30px;" prompt="请输入"></label>
+		</form>
+
+		<div class="easyui-panel" style="position:absolute;padding:5px;width: 400px;height:630px">
+			<label style="position: fixed;"><input id="searchId" class="easyui-textbox " data-options="validType:'length[1,20]'" style="width: 300px; height: 30px; display: none;" prompt="请输入城市名称"></label>
+			<ul id="tt" class="cont-tree"></ul>
+		</div>
+
+		<div class="easyui-panel" style="position:absolute;left:440px;padding:5px;width: 400px;height:630px">
+			<ul id="kk" class="cont-tree"></ul>
+		</div>
+
+		<script>
+			$(function() {
+				var treeId = 'tt', // 展示tree数据的容器id
+				    treeCkID = 'kk', // 展示选中结果的容器id
+				    initChked = [208, 479,69629], // 默认被选中项 数组对象
+					t = []; 
+				
+				var o_o={
+					init:function(){
+						o_o.loadData();
+						o_o.bindEvt();
+					},
+					bindEvt:function(){
+
+						// 监听搜索框架输入数据  on("input propertychange",function(){})
+						$('#searchId').textbox('textbox').keyup(function(e) {
+							o_o.filterCont(this.value);
+						});
+						$('#searchId').textbox('textbox').keydown(function(e) {
+							o_o.filterCont(this.value);
+						});
+						
+						// 点击展开对应ul
+						$('#'+treeId+',#'+treeCkID).on('click','div',function(){
+							$(this).next().toggleClass('dn');
+						});
+						
+						// 选中复选框
+						$('#'+treeId).on('click','input[type=checkbox]',function(){
+							var _p = $(this).parent().parent();
+				    	    if($(this).is(':checked')){
+				    	    	_p.find('input[type=checkbox]').prop('checked',true);
+				    	    	o_o.markCheck(_p,true);
+				    	    }else{
+				    	    	_p.find('input[type=checkbox]').removeAttr('checked');
+				    	    	o_o.markCheck(_p,false);
+				    	    }
+				    	    
+				    	    if(!$('#'+treeId+' .one-level[check=true]').length){
+				    	    	$('#'+treeCkID).empty();
+				    	    }
+						    o_o.showChecked();
+						});
+						
+					},
+					loadData:function(){
+						$.ajax({
+							type: "get",
+							url: "tree_data.json",
+							dataType: "json",
+							success: function(data) {
+						          o_o.doData(data);
+							}
+						});
+					},
+					doData:function(arr){
+						var a = [],b = [],c = [];
+						$.each(arr,function(i,v){
+							if(v.level == 0){
+								a.push(v);
+							}
+							if(v.level == 1){
+								b.push(v);
+							}
+							if(v.level == 2){
+								c.push(v);
+							}
+						});
+						o_o.bornHtml(a,b,c);
+					},
+					bornHtml:function(a,b,c){
+						var t = [];
+						$.each(a, function(i,v) {
+							var s = [];
+							$.each(b,function(j,h){
+								var y = [];
+								$.each(c,function(m,n){
+									if(h.id==n.pid){
+									    y.push('<li class="thr-level" id='+n.id+'><div><input type="checkbox"/>'+n.name+'</div></li>');
+									}
+								})
+								if(v.id==h.pid){
+								    s.push('<li class="two-level" id="'+h.id+'"><div><input class="cutChk" type="checkbox"/>'+h.name+'</div><ul id="ul'+h.id+'" class="dn">'+y.join('')+'</ul></li>');
+								}
+							})
+							t.push('<li class="one-level" id="'+v.id+'"><div><input class="cutChk" type="checkbox"/>'+v.name+'</div><ul id="ul'+v.id+'" class="dn">'+s.join('')+'</ul></li>');
+						});
+						
+						$("#tt").append(t.join(''));
+						// 放在dom生成之后
+						o_o.initChecked();
+				    },
+				    // 匹配搜索内容
+				    filterCont:function(txt){
+				    	$("#" + treeId + " li").addClass('dn').filter(":contains('" + txt.trim() + "')").removeClass('dn');
+				    },
+				    // 标记选中状态
+				    markCheck:function(_p,bool){
+				    	
+				    	var doMark = {
+				    		'one-level':function(){
+				    			if(bool){
+				    				_p.attr("check",bool);
+				    				_p.find('li').attr("check",bool);
+				    			}else{
+				    				_p.removeAttr('check');
+				    				_p.find('li').removeAttr('check');
+				    			}
+				    		},
+				    		'two-level':function(){
+				    			if(bool){
+				    				_p.attr("check",bool);
+				    				_p.find('li').attr("check",bool);
+				    				_p.parents('li').attr("check",bool);
+				    			}else{
+				    				_p.removeAttr('check');
+				    				_p.find('li').removeAttr('check');
+				    				if(!_p.parent().find('li[check=true]').length){
+				    					_p.parents('li').removeAttr('check');
+				    				}
+				    				_p.find('.cutChk').removeAttr('checked');
+				    				_p.parent().parent().find('.cutChk').eq(0).removeAttr('checked');
+				    			}
+				    		},
+				    		'thr-level':function(){
+				    			if(bool){
+				    				_p.attr("check",bool);
+				    				_p.parents('li').attr("check",bool);
+				    			}else{
+				    				_p.removeAttr('check');
+				    				if(!_p.parent().find('li[check=true]').length){
+				    					_p.parents('li').removeAttr('check');
+				    				}
+				    				_p.find('.cutChk').removeAttr('checked');
+				    				_p.parent().parent().find('.cutChk').eq(0).removeAttr('checked');
+				    				_p.parent().parent().parent().parent().find('.cutChk').eq(0).removeAttr('checked');
+				    			}
+				    		}
+				    	}
+				    	
+				    	doMark[_p.attr('class')]();
+				    },
+				    // 初始化时，默认选中
+				    initChecked:function(){
+				    	$.each(initChked,function(i,v){
+				    		// 标记被选中项
+				    		o_o.markCheck($('#'+v),true);
+				    		$('#'+v+' input[type=checkbox]').prop("checked",true);
+				    		$('#'+v).parents('ul').removeClass('dn');
+				    	});
+				    	o_o.showChecked();
+				    },
+				    // 显示选中项
+				    showChecked:function(){
+				    	$('#'+treeCkID).html($('#tt').html());
+				    	$('#'+treeCkID+' li').hide().filter(function() {
+							return $(this).attr('check');
+						}).show();
+						$('#'+treeCkID+' input[type=checkbox]').remove();
+				    }
+				};
+				o_o.init();
+			});
+		</script>
+	</body>
+
+</html>

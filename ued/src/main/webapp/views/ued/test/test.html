@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>第二个页面</title>
+
+<script src="../../static/tsh/1.0.0/jquery/jquery-1.11.3.min.js"></script>
+<script src="../../static/tsh/1.0.0/jquery/jquery.cookies.2.2.0.min.js"></script>
+<script src="../../static/tsh/1.0.0/jquery/cookies.js"></script>
+<script src="../../static/tsh/1.0.0/jquery/jquery.validate.js"></script>
+<script src="../../static/tsh/common/checklogin.js"></script>    <!-- 验证是否登录 -->
+<script type="text/javascript">
+  //如果验证还未登录，则调整到登录中心地址
+	  function checklogin() {
+			doLogin(function() {
+				//访问服务端接口，获取当前用户的用户名称
+					$.ajax({
+						url:'/test/getWbName.do',
+						type:'post',
+						success:function(data){
+							if(data!=null||data!='undefined'){				
+								$('#loginName').val(data.data);			
+							}
+							else if(result){
+								alert('操作提示','请先登录');
+							}
+						},
+						dataType:'json'
+				});
+				
+		});
+  	}		
+	
+  
+  </script>
+</head>
+<body>
+	<input id="test" type="button" value="获取登录用户名称" onclick="checklogin()" />
+	<input id="loginName" type="text" value="请先登录" />
+	<a href="http://127.0.0.1:81/views/test/test1.html" id="otherpage">另外一个页面</a>
+
+</body>
+</html>

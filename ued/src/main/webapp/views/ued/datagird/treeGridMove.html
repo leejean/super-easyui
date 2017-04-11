@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="jquery,ui,easy,easyui,web">
+		<meta name="description" content="easyui help you build your web page easily!">
+		<title>treegrid上下移动</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/easyui.css?gversion=1.0.0">
+		<link rel="stylesheet" type="text/css" href="../../../static/tsh/1.0.0/themes/style.css?gversion=1.0.0">
+		<script src="../../../static/tsh/1.0.0/jquery.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.min.js?gversion=1.0.0"></script>
+		<script src="../../../static/tsh/1.0.0/jquery.easyui.extend.min.js?gversion=1.0.0"></script>
+		<style>
+			code {
+				font-family: monospace;
+				color: #2d2d2d;
+				background: whitesmoke;
+				display: block;
+				padding: 10px;
+				border: 1px solid #ccc;
+				overflow: scroll;
+			}
+			/* 用来去除默认的图标 */
+
+			.tree-icon {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<table id="tt" class="easyui-treegrid" style="width:700px;height:400px">
+			<thead>
+				<tr>
+					<th data-options="field:'name'" width="220">Name</th>
+					<th data-options="field:'size'" width="100" align="right">Size</th>
+					<th data-options="field:'date'" width="150">Modified Date</th>
+				</tr>
+			</thead>
+		</table>
+
+		<pre>
+        <code>
+
+$('.datagrid-view2').on('click', 'a[move]', function() {
+	var _this = $(this).parent().parent().parent();
+	var node = '',_p = _this.parent();
+
+	// 临时存储dom元素
+	node = _this[0].outerHTML;
+	if (_this.next().hasClass('treegrid-tr-tree')) {
+		node += _this.next()[0].outerHTML;
+	}
+
+	var move = {
+		'up':function(){
+			// 当前节点的向上的同级节点没子集，直接插入到它之前
+			if(_this.prev('tr[node-id]').length){
+			   _this.prev().before(node);
+			   move.remove();
+			}else{
+				if(_this.prev().prev('tr[node-id]').length){
+					 _this.prev().prev().before(node);
+			         move.remove();
+				}
+			}
+		},
+		'down':function(){
+			// 当前节点的向下的同级节点没子集,并且自己也没子集，直接插入到它之后
+			if(_this.next('tr[node-id]').length){
+				if(_this.next().next('tr[node-id]').length){
+					_this.next().after(node);
+				}else{
+					if(_this.next().next().hasClass('treegrid-tr-tree')){
+						_this.next().next().after(node);
+					}else{
+						_this.next().after(node);
+					}
+				}
+				move.remove();
+			}else{
+				if(_this.next().next('tr[node-id]').length){
+					 if(!_this.next().next().next().hasClass('treegrid-tr-tree')){
+					 	 _this.next().next().after(node);
+					 }else{
+					 	 _this.next().next().next().after(node);
+					 }
+			         move.remove();
+				}
+			}
+		},
+		remove:function(){
+			if (_this.next().hasClass('treegrid-tr-tree')) {
+				_this.next().remove();
+			}
+			_this.remove();
+		}
+	};
+	move[$(this).attr('move')]();
+});
+
+          </code>
+        </pre>
+		<script>
+			$(function() {
+				var treeId = 'tt'; // 展示tree数据的容器id
+
+				var o_o = {
+					init: function() {
+						o_o.initTreeGrid();
+					},
+					initTreeGrid: function() {
+						// 初始化tree控件
+						$("#" + treeId).treegrid({
+							url: 'treegrid.json',
+							method: 'get',
+							checkbox: true,
+							idField: 'id',
+							treeField: 'name',
+							onLoadSuccess: function() {
+								//								第一种方案
+								//								$('.datagrid-view2').on('click', 'tr[node-id]', function() {
+								//									var node = '',
+								//										_p = $(this).parent();
+								//									node = $(this)[0].outerHTML;
+								//									if ($(this).next().hasClass('treegrid-tr-tree')) {
+								//										node += $(this).next()[0].outerHTML;
+								//										$(this).next().remove();
+								//									}
+								//									$(this).remove();
+								//									_p.append(node);
+								//								});
+
+								//                             第二种方案
+								$('.datagrid-view2').on('click', 'a[move]', function() {
+									var _this = $(this).parent().parent().parent();
+									var node = '',
+										_p = _this.parent();
+
+									// 临时存储dom元素
+									node = _this[0].outerHTML;
+									if (_this.next().hasClass('treegrid-tr-tree')) {
+										node += _this.next()[0].outerHTML;
+									}
+
+									var move = {
+										'up': function() {
+											// 当前节点的向上的同级节点没子集，直接插入到它之前
+											if (_this.prev('tr[node-id]').length) {
+												_this.prev().before(node);
+												move.remove();
+											} else {
+												if (_this.prev().prev('tr[node-id]').length) {
+													_this.prev().prev().before(node);
+													move.remove();
+												}
+											}
+										},
+										'down': function() {
+											// 当前节点的向下的同级节点没子集,并且自己也没子集，直接插入到它之后
+											if (_this.next('tr[node-id]').length) {
+												if (_this.next().next('tr[node-id]').length) {
+													_this.next().after(node);
+												} else {
+													if (_this.next().next().hasClass('treegrid-tr-tree')) {
+														_this.next().next().after(node);
+													} else {
+														_this.next().after(node);
+													}
+												}
+												move.remove();
+											} else {
+												if (_this.next().next('tr[node-id]').length) {
+													if (!_this.next().next().next().hasClass('treegrid-tr-tree')) {
+														_this.next().next().after(node);
+													} else {
+														_this.next().next().next().after(node);
+													}
+													move.remove();
+												}
+											}
+										},
+										remove: function() {
+											if (_this.next().hasClass('treegrid-tr-tree')) {
+												_this.next().remove();
+											}
+											_this.remove();
+										}
+									};
+									move[$(this).attr('move')]();
+								});
+							},
+							columns: [
+								[{
+									field: 'id',
+									title: 'id',
+									width: 80
+								}, {
+									field: 'name',
+									title: 'name',
+									width: 200
+								}, {
+									field: 'date',
+									title: 'date',
+									width: 80
+								}, {
+									field: 'size',
+									title: 'size',
+									width: 80
+								}, {
+									field: 'do',
+									title: 'do',
+									width: 80,
+									formatter: function(value, row, index) {
+										return "<a move=up>上移</a>  <a move=down>下移</a>";
+									}
+								}]
+							]
+						});
+					}
+				};
+				o_o.init();
+			});
+		</script>
+	</body>
+
+</html>
